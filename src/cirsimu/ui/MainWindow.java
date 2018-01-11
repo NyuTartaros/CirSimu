@@ -11,6 +11,7 @@ import java.awt.BorderLayout;
 import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JMenu;
+import javax.swing.ImageIcon;
 
 public class MainWindow extends JFrame {
 	
@@ -30,14 +31,17 @@ public class MainWindow extends JFrame {
 		componentBtnBar.add(componentToolBar_1);
 		
 		JButton voltmeterBtn = new JButton("");
+		voltmeterBtn.setIcon(new ImageIcon("E:\\eclipse-workspace\\CirSimu\\icons\\voltmeter.png"));
 		voltmeterBtn.setToolTipText("\u7535\u538B\u8868");
 		componentToolBar_1.add(voltmeterBtn);
 		
-		JButton resisanceBtn = new JButton("");
-		resisanceBtn.setToolTipText("\u7535\u963B");
-		componentToolBar_1.add(resisanceBtn);
+		JButton resistanceBtn = new JButton("");
+		resistanceBtn.setIcon(new ImageIcon("E:\\eclipse-workspace\\CirSimu\\icons\\resistance.png"));
+		resistanceBtn.setToolTipText("\u7535\u963B");
+		componentToolBar_1.add(resistanceBtn);
 		
 		JButton diodeBtn = new JButton("");
+		diodeBtn.setIcon(new ImageIcon("E:\\eclipse-workspace\\CirSimu\\icons\\diode.png"));
 		diodeBtn.setToolTipText("\u4E8C\u6781\u7BA1");
 		componentToolBar_1.add(diodeBtn);
 		
@@ -59,14 +63,17 @@ public class MainWindow extends JFrame {
 		componentBtnBar.add(componentToolBar_2);
 		
 		JButton amperemeterBtn = new JButton("");
+		amperemeterBtn.setIcon(new ImageIcon("E:\\eclipse-workspace\\CirSimu\\icons\\amperemeter.png"));
 		amperemeterBtn.setToolTipText("\u7535\u6D41\u8868");
 		componentToolBar_2.add(amperemeterBtn);
 		
 		JButton capicititanceBtn = new JButton("");
+		capicititanceBtn.setIcon(new ImageIcon("E:\\eclipse-workspace\\CirSimu\\icons\\capicititance.png"));
 		capicititanceBtn.setToolTipText("\u7535\u5BB9");
 		componentToolBar_2.add(capicititanceBtn);
 		
 		JButton amplifierBtn = new JButton("");
+		amplifierBtn.setIcon(new ImageIcon("E:\\eclipse-workspace\\CirSimu\\icons\\amplifier.png"));
 		amplifierBtn.setToolTipText("\u8FD0\u7B97\u653E\u5927\u5668");
 		componentToolBar_2.add(amplifierBtn);
 		
