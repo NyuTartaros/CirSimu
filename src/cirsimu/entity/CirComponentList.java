@@ -22,5 +22,9 @@ public class CirComponentList {
 		cirComponent1.setlink(interface1, comp2, interface2);
 		cirComponent2.setlink(interface2, comp1, interface1);
 	}
+	
+	public ArrayList<CirComponent> getArrayList(){
+		return cirComponents;
+	}
 
 }
