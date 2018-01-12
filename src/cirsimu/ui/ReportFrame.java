@@ -5,7 +5,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
-import javax.swing.text.Document;
 
 import cirsimu.util.DocUtil;
 

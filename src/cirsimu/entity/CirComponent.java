@@ -1,6 +1,5 @@
 package cirsimu.entity;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CirComponent {

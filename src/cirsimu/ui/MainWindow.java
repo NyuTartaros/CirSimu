@@ -11,11 +11,9 @@ import cirsimu.util.FileHelper;
 import javax.swing.JToolBar;
 import java.awt.BorderLayout;
 
-import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
-import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;

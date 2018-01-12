@@ -10,8 +10,6 @@ import cirsimu.entity.CirComponent;
 import cirsimu.entity.CirComponentList;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 
 public class DrawArea extends JPanel {
