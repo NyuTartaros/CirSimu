@@ -49,6 +49,30 @@ public class CirComponent {
 		return y;
 	}
 	
+	public void setInterfaceNum(int interfaceNum){
+		this.interfaceNum = interfaceNum;
+	}
+	
+	public int getInterfaceNum(){
+		return interfaceNum;
+	}
+	
+	public void setNeighCompTable(HashMap<Integer,Integer> neighCompTable){
+		this.neighCompTable = neighCompTable;
+	}
+	
+	public HashMap<Integer,Integer> getNeighCompTable(){
+		return neighCompTable;
+	}
+	
+	public void setNeighInterTable(HashMap<Integer,Integer> neighInterTable){
+		this.neighInterTable = neighInterTable;
+	}
+	
+	public HashMap<Integer,Integer> getNeighInterTable(){
+		return neighInterTable;
+	}
+	
 	public void setlink(int localInterface, int remoteComp, int remoteInterface){
 		neighCompTable.put(localInterface, remoteComp);
 		neighInterTable.put(localInterface, remoteInterface);

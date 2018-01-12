@@ -12,10 +12,32 @@ import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainWindow extends JFrame {
 	
 	private JPanel componentBtnBar = new JPanel();
+	private JToolBar componentToolBar_1;
+	private JButton voltmeterBtn;
+	private JButton resistanceBtn;
+	private JButton diodeBtn;
+	private JButton voltageSourceBtn;
+	private JButton groundConnBtn;
+	private JButton inductanceBtn;
+	private JToolBar componentToolBar_2;
+	private JButton amperemeterBtn;
+	private JButton capicititanceBtn;
+	private JButton amplifierBtn;
+	private JButton currentSourceBtn;
+	private JButton switchBtn;
+	private JButton wireBtn;
+	private JMenuBar menuBar;
+	private JMenu fileMenu;
+	private JMenuItem openMenuItem;
+	private JMenuItem saveMenuItem;
+	private JMenu editMenu;
+	private DrawArea drawArea;
 	
 	public MainWindow() {
 		setVisible(true);
@@ -26,84 +48,108 @@ public class MainWindow extends JFrame {
 		
 		getContentPane().add(componentBtnBar, BorderLayout.WEST);
 		
-		JToolBar componentToolBar_1 = new JToolBar();
+		componentToolBar_1 = new JToolBar();
 		componentToolBar_1.setFloatable(false);
 		componentToolBar_1.setOrientation(SwingConstants.VERTICAL);
 		componentBtnBar.add(componentToolBar_1);
 		
-		JButton voltmeterBtn = new JButton("");
-		voltmeterBtn.setIcon(new ImageIcon("F:\\GitHubCirSimu\\icons\\voltmeter.png"));
+		voltmeterBtn = new JButton("\u7535\u538B\u8868");
+		voltmeterBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				drawArea.startEditing("voltmeter");
+			}
+		});
+		voltmeterBtn.setIcon(null);
 		voltmeterBtn.setToolTipText("\u7535\u538B\u8868");
 		componentToolBar_1.add(voltmeterBtn);
 		
-		JButton resistanceBtn = new JButton("");
-		resistanceBtn.setIcon(new ImageIcon("F:\\GitHubCirSimu\\icons\\resistance.png"));
+		resistanceBtn = new JButton("\u7535\u963B");
+		resistanceBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				drawArea.startEditing("resistance");
+			}
+		});
+		resistanceBtn.setIcon(null);
 		resistanceBtn.setToolTipText("\u7535\u963B");
 		componentToolBar_1.add(resistanceBtn);
 		
-		JButton diodeBtn = new JButton("");
-		diodeBtn.setIcon(new ImageIcon("F:\\GitHubCirSimu\\icons\\diode.png"));
+		diodeBtn = new JButton("\u4E8C\u6781\u7BA1");
+		diodeBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				drawArea.startEditing("diode");
+			}
+		});
+		diodeBtn.setIcon(null);
 		diodeBtn.setToolTipText("\u4E8C\u6781\u7BA1");
 		componentToolBar_1.add(diodeBtn);
 		
-		JButton voltageSourceBtn = new JButton("");
+		voltageSourceBtn = new JButton("\u7535\u538B\u6E90");
 		voltageSourceBtn.setToolTipText("\u7535\u538B\u6E90");
 		componentToolBar_1.add(voltageSourceBtn);
 		
-		JButton groundConnBtn = new JButton("");
+		groundConnBtn = new JButton("\u63A5\u5730");
 		groundConnBtn.setToolTipText("\u63A5\u5730");
 		componentToolBar_1.add(groundConnBtn);
 		
-		JButton inductanceBtn = new JButton("");
+		inductanceBtn = new JButton("\u7535\u611F");
 		inductanceBtn.setToolTipText("\u7535\u611F");
 		componentToolBar_1.add(inductanceBtn);
 		
-		JToolBar componentToolBar_2 = new JToolBar();
+		componentToolBar_2 = new JToolBar();
 		componentToolBar_2.setOrientation(SwingConstants.VERTICAL);
 		componentToolBar_2.setFloatable(false);
 		componentBtnBar.add(componentToolBar_2);
 		
-		JButton amperemeterBtn = new JButton("");
-		amperemeterBtn.setIcon(new ImageIcon("F:\\GitHubCirSimu\\icons\\amperemeter.png"));
+		amperemeterBtn = new JButton("\u7535\u6D41\u8868");
+		amperemeterBtn.setIcon(null);
 		amperemeterBtn.setToolTipText("\u7535\u6D41\u8868");
 		componentToolBar_2.add(amperemeterBtn);
 		
-		JButton capicititanceBtn = new JButton("");
-		capicititanceBtn.setIcon(new ImageIcon("F:\\GitHubCirSimu\\icons\\capicititance.png"));
+		capicititanceBtn = new JButton("\u7535\u5BB9");
+		capicititanceBtn.setIcon(null);
 		capicititanceBtn.setToolTipText("\u7535\u5BB9");
 		componentToolBar_2.add(capicititanceBtn);
 		
-		JButton amplifierBtn = new JButton("");
-		amplifierBtn.setIcon(new ImageIcon("F:\\GitHubCirSimu\\icons\\amplifier.png"));
+		amplifierBtn = new JButton("\u653E\u5927\u5668");
+		amplifierBtn.setIcon(null);
 		amplifierBtn.setToolTipText("\u8FD0\u7B97\u653E\u5927\u5668");
 		componentToolBar_2.add(amplifierBtn);
 		
-		JButton currentSourceBtn = new JButton("");
+		currentSourceBtn = new JButton("\u7535\u6D41\u6E90");
 		currentSourceBtn.setToolTipText("\u7535\u6D41\u6E90");
 		componentToolBar_2.add(currentSourceBtn);
 		
-		JButton switchBtn = new JButton("");
+		switchBtn = new JButton("\u5F00\u5173");
 		switchBtn.setToolTipText("\u5F00\u5173");
 		componentToolBar_2.add(switchBtn);
 		
-		JButton wireBtn = new JButton("");
+		wireBtn = new JButton("\u5BFC\u7EBF");
 		wireBtn.setToolTipText("\u5BFC\u7EBF");
 		componentToolBar_2.add(wireBtn);
 		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
+		drawArea = new DrawArea();
+		getContentPane().add(drawArea, BorderLayout.CENTER);
 		
-		JMenu fileMenu = new JMenu("\u6587\u4EF6");
+		menuBar = new JMenuBar();
+		
+		fileMenu = new JMenu("\u6587\u4EF6");
 		menuBar.add(fileMenu);
 		
-		JMenuItem openMenuItem = new JMenuItem("\u6253\u5F00");
+		openMenuItem = new JMenuItem("\u6253\u5F00");
 		fileMenu.add(openMenuItem);
 		
-		JMenuItem saveMenuItem = new JMenuItem("\u4FDD\u5B58");
+		saveMenuItem = new JMenuItem("\u4FDD\u5B58");
 		fileMenu.add(saveMenuItem);
 		
-		JMenu editMenu = new JMenu("\u7F16\u8F91");
+		editMenu = new JMenu("\u7F16\u8F91");
 		menuBar.add(editMenu);
+		
+		menuBar.setVisible(true);
+		this.setJMenuBar(menuBar);
+		
 	}
 
 }
