@@ -107,4 +107,8 @@ public class DrawArea extends JPanel {
 		}
 	}
 	
+	public CirComponentList getComponentList(){
+		return cirComponentList;
+	}
+	
 }

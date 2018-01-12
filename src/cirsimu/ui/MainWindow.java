@@ -5,15 +5,24 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import cirsimu.util.FileHelper;
+
 import javax.swing.JToolBar;
 import java.awt.BorderLayout;
 
 import javax.swing.JApplet;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class MainWindow extends JFrame {
 	
@@ -38,8 +47,10 @@ public class MainWindow extends JFrame {
 	private JMenuItem saveMenuItem;
 	private JMenu editMenu;
 	private DrawArea drawArea;
+	private JMenuItem reportMenuItem;
 	
 	public MainWindow() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("F:\\GitHub\\CirSimu\\icons\\icon.png"));
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("\u7535\u8DEF\u7F16\u8F91\u4EFF\u771F");
@@ -127,6 +138,12 @@ public class MainWindow extends JFrame {
 		componentToolBar_2.add(switchBtn);
 		
 		wireBtn = new JButton("\u5BFC\u7EBF");
+		wireBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				drawArea.startLinking();
+			}
+		});
 		wireBtn.setToolTipText("\u5BFC\u7EBF");
 		componentToolBar_2.add(wireBtn);
 		
@@ -142,14 +159,44 @@ public class MainWindow extends JFrame {
 		fileMenu.add(openMenuItem);
 		
 		saveMenuItem = new JMenuItem("\u4FDD\u5B58");
+		saveMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					saveComponentListToCsv();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		fileMenu.add(saveMenuItem);
 		
 		editMenu = new JMenu("\u7F16\u8F91");
 		menuBar.add(editMenu);
 		
+		reportMenuItem = new JMenuItem("\u751F\u6210\u5B9E\u9A8C\u62A5\u544A");
+		reportMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ReportFrame reportFrame = new ReportFrame();
+			}
+		});
+		editMenu.add(reportMenuItem);
+		
 		menuBar.setVisible(true);
 		this.setJMenuBar(menuBar);
 		
+	}
+	
+	public void saveComponentListToCsv() throws IOException{
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("±£¥ÊCir");
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		int result = fileChooser.showSaveDialog(getContentPane());
+		if(result == JFileChooser.APPROVE_OPTION){
+			File file = fileChooser.getSelectedFile();
+			FileHelper.saveComponentListToCsv(file
+					, drawArea.getComponentList());
+		}
 	}
 
 }
