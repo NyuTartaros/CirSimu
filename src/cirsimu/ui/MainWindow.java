@@ -46,6 +46,8 @@ public class MainWindow extends JFrame {
 	private JMenu editMenu;
 	private DrawArea drawArea;
 	private JMenuItem reportMenuItem;
+	private JMenuItem menuItem;
+	private JMenuItem menuItem_1;
 	
 	public MainWindow() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("F:\\GitHub\\CirSimu\\icons\\icon.png"));
@@ -201,10 +203,19 @@ public class MainWindow extends JFrame {
 		fileMenu = new JMenu("\u6587\u4EF6");
 		menuBar.add(fileMenu);
 		
-		openMenuItem = new JMenuItem("\u6253\u5F00");
+		menuItem = new JMenuItem("\u65B0\u5EFA\u5B9E\u9A8C");
+		menuItem.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				drawArea.newGraph();
+			}
+		});
+		fileMenu.add(menuItem);
+		
+		openMenuItem = new JMenuItem("\u6253\u5F00\u5B9E\u9A8C");
 		fileMenu.add(openMenuItem);
 		
-		saveMenuItem = new JMenuItem("\u4FDD\u5B58");
+		saveMenuItem = new JMenuItem("\u5BFC\u51FACir");
 		saveMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -215,6 +226,20 @@ public class MainWindow extends JFrame {
 				}
 			}
 		});
+		
+		menuItem_1 = new JMenuItem("\u4FDD\u5B58\u5B9E\u9A8C");
+		menuItem_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					saveComponentListToCsv();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		fileMenu.add(menuItem_1);
 		fileMenu.add(saveMenuItem);
 		
 		editMenu = new JMenu("\u7F16\u8F91");
@@ -226,6 +251,9 @@ public class MainWindow extends JFrame {
 				ReportFrame reportFrame = new ReportFrame();
 			}
 		});
+		
+		JMenuItem mntmpspice = new JMenuItem("\u8C03\u7528PSpice\u4EFF\u771F");
+		editMenu.add(mntmpspice);
 		editMenu.add(reportMenuItem);
 		
 		menuBar.setVisible(true);
@@ -244,5 +272,4 @@ public class MainWindow extends JFrame {
 					, drawArea.getComponentList());
 		}
 	}
-
 }

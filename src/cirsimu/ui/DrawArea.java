@@ -109,4 +109,9 @@ public class DrawArea extends JPanel {
 		return cirComponentList;
 	}
 	
+	public void newGraph() {
+		cirComponentList = new CirComponentList();
+		paint(getGraphics());
+	}
+	
 }

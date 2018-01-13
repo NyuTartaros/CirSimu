@@ -118,14 +118,14 @@ public class ReportFrame extends JFrame {
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
 		scrollPane_2.setBounds(74, 294+31
-				, 500, 42);
+				, 500, 3*lineHeight);
 		getContentPane().add(scrollPane_2);
 		
 		content = new JTextPane();
 		scrollPane_2.setViewportView(content);
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(74, 346+31
+		scrollPane_3.setBounds(74, scrollPane_2.getY()+scrollPane_2.getHeight()+10
 				, 500, 126);
 		getContentPane().add(scrollPane_3);
 		
@@ -133,7 +133,7 @@ public class ReportFrame extends JFrame {
 		scrollPane_3.setViewportView(procedure);
 		
 		JScrollPane scrollPane_4 = new JScrollPane();
-		scrollPane_4.setBounds(74, 482+31
+		scrollPane_4.setBounds(74, scrollPane_3.getY()+scrollPane_3.getHeight()+10
 				, 500, 126);
 		getContentPane().add(scrollPane_4);
 		
@@ -145,15 +145,15 @@ public class ReportFrame extends JFrame {
 		getContentPane().add(lblNewLabel_2);
 		
 		JLabel label_5 = new JLabel("<html>\u5B9E\u9A8C\u5185\u5BB9<br>\u548C\u8981\u6C42<html>");
-		label_5.setBounds(10, 294+31, 54, 42);
+		label_5.setBounds(10, 325, 54, 42);
 		getContentPane().add(label_5);
 		
 		JLabel label_6 = new JLabel("\u5B9E\u9A8C\u6B65\u9AA4");
-		label_6.setBounds(10, 346+31, 54, 15);
+		label_6.setBounds(10, 398, 54, 15);
 		getContentPane().add(label_6);
 		
 		JLabel label_7 = new JLabel("\u5B9E\u9A8C\u7ED3\u679C");
-		label_7.setBounds(10, 503+31, 54, 15);
+		label_7.setBounds(10, 534, 54, 15);
 		getContentPane().add(label_7);
 		
 		JButton button = new JButton("\u751F\u6210");
@@ -167,7 +167,7 @@ public class ReportFrame extends JFrame {
 						, procedure.getText(), result.getText());
 			}
 		});
-		button.setBounds(244, 618+31, 93, 23);
+		button.setBounds(246, 670, 93, 23);
 		getContentPane().add(button);
 		
 		title = new JTextField();
