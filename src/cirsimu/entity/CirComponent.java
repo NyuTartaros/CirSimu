@@ -154,7 +154,7 @@ public class CirComponent {
 		for(int i=0; i<interfaceNum; i++) {
 			interTmp = new Point(compLoc.getX()+interfaceLocs[i].getX(), compLoc.getY()+interfaceLocs[i].getY());
 			if(Math.abs(interTmp.getX() - x) <= delta && Math.abs(interTmp.getY() - y) <= delta) {
-				return i+1;
+				return i;
 			}
 		}
 		return 0;

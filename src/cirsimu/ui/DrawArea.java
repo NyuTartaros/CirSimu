@@ -21,27 +21,36 @@ public class DrawArea extends JPanel {
 	private int status = WAITING;
 	private String currentComponent = "";
 	
-	//TODO 首先实现元件放置和拖动功能
+	//TODO 实现元件拖动功能
+	//TODO 实现元件右键菜单
 	
 	public DrawArea(){
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//左键点击：放置当前组件
-				if(!e.isControlDown() && e.getButton() == e.BUTTON1){
+				if(!e.isControlDown() && e.getButton() == MouseEvent.BUTTON1){
+					switch(status){
+					case EDITING:
+						CirComponent tmpComponent = new CirComponent
+								(currentComponent, e.getX(), e.getY());
+						cirComponentList.add(tmpComponent);
+						stopEditing();
+						paint(getGraphics());
+						return;
+					case LINKING:
+						
+						break;
+					case WAITING:
+						return;
+					}
 					if(isWaiting()){
 						return;
 					}
-					CirComponent tmpComponent = new CirComponent
-							(currentComponent, e.getX(), e.getY());
-					cirComponentList.add(tmpComponent);
-					stopEditing();
-					stopLinking();
-					paint(getGraphics());
-					return;
+
 				}
 				//按住Ctrl左键点击：取消当前编辑或连接
-				if(e.isControlDown() && e.getButton()==e.BUTTON1){
+				if(e.isControlDown() && e.getButton()==MouseEvent.BUTTON1){
 					//DEBUG
 //					System.out.println("At DrawArea.mouseClicked(): ControlDown.");
 					stopEditing();
@@ -56,19 +65,22 @@ public class DrawArea extends JPanel {
 		addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
-				if(status == WAITING){
+				switch(status){
+				case EDITING:
+					CirComponent tmpComponent = new CirComponent
+							(currentComponent, e.getX(), e.getY());
+					tmpLbl.setComponent(tmpComponent);
+					return;
+				case WAITING:
 					return;
 				}
-				CirComponent tmpComponent = new CirComponent
-						(currentComponent, e.getX(), e.getY());
-				tmpLbl.setComponent(tmpComponent);
 			}
 		});
 		setVisible(true);
 		setBackground(Color.WHITE);
 	}
 	
-	//TODO 重写paint()方法
+	//重写paint()方法
 	public void paint(Graphics g){
 		super.paint(g);
 		ArrayList<CirComponent> cirComponents 
@@ -112,6 +124,10 @@ public class DrawArea extends JPanel {
 	public void newGraph() {
 		cirComponentList = new CirComponentList();
 		paint(getGraphics());
+	}
+	
+	private int[] clickInComp(int x, int y){
+		return cirComponentList.pointInComp(x, y);
 	}
 	
 }
