@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 
 import cirsimu.entity.CirComponent;
 import cirsimu.entity.CirComponentList;
+import cirsimu.entity.Point;
+
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
@@ -125,9 +127,9 @@ public class DrawArea extends JPanel {
 		}
 		drawLink(g);
 		if(isLinking_A()){
-			
+			drawInterfaces(g);
 		}else if (isLinking_B()) {
-			
+			drawInterfaces_B(g);
 		}
 	}
 	
@@ -142,7 +144,35 @@ public class DrawArea extends JPanel {
 		ArrayList<CirComponent> cirComponents
 				= cirComponentList.getArrayList();
 		g.setColor(Color.GREEN);
-		
+		for(int i=0; i<cirComponents.size(); i++){
+			int delta = 5;	//接口方框半边长
+			CirComponent tmpComp = cirComponents.get(i);
+			Point[] interLocs = tmpComp.getInterfaceLocs();
+			for(int j=0; j<interLocs.length; j++){
+				int x = interLocs[j].getX();
+				int y = interLocs[j].getY();
+				g.drawLine(x-delta, y-delta, x-delta, y+delta);
+				g.drawLine(x-delta, y+delta, x+delta, y+delta);
+				g.drawLine(x+delta, y+delta, x+delta, y-delta);
+				g.drawLine(x+delta, y-delta, x-delta, y-delta);
+			}
+		}
+	}
+	
+	private void drawInterfaces_B(Graphics g){
+		int delta = 5;	//接口方框半边长
+		ArrayList<CirComponent> cirComponents
+				= cirComponentList.getArrayList();
+		g.setColor(Color.RED);
+		int comp = tmpInterfaceA[0];
+		int inter = tmpInterfaceA[1];
+		Point interLoc = cirComponents.get(comp).getInterfaceLoc(inter);
+		int x = interLoc.getX();
+		int y = interLoc.getY();
+		g.drawLine(x-delta, y-delta, x-delta, y+delta);
+		g.drawLine(x-delta, y+delta, x+delta, y+delta);
+		g.drawLine(x+delta, y+delta, x+delta, y-delta);
+		g.drawLine(x+delta, y-delta, x-delta, y-delta);
 	}
 	
 	public void startEditing(String componentType){

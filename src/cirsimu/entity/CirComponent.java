@@ -141,6 +141,19 @@ public class CirComponent {
 		return neighInterTable;
 	}
 	
+	public Point[] getInterfaceLocs(){
+		Point[] interLocs = new Point[interfaceNum];
+		for(int i=0; i<interfaceNum; i++){
+			interLocs[i] = new Point(compLoc.getX()+interfaceLocs[i].getX()
+					, compLoc.getY()+interfaceLocs[i].getY());
+		}
+		return interLocs;
+	}
+	
+	public Point getInterfaceLoc(int inter){
+		return interfaceLocs[inter];
+	}
+	
 	public void setlink(int localInterface, int remoteComp, int remoteInterface){
 		neighCompTable.put(localInterface, remoteComp);
 		neighInterTable.put(localInterface, remoteInterface);
@@ -151,8 +164,10 @@ public class CirComponent {
 		int delta = 10;	//µã»÷Îó²îÏÞ
 		Point interTmp;
 		for(int i=0; i<interfaceNum; i++) {
-			interTmp = new Point(compLoc.getX()+interfaceLocs[i].getX(), compLoc.getY()+interfaceLocs[i].getY());
-			if(Math.abs(interTmp.getX() - x) <= delta && Math.abs(interTmp.getY() - y) <= delta) {
+			interTmp = new Point(compLoc.getX()+interfaceLocs[i].getX()
+					, compLoc.getY()+interfaceLocs[i].getY());
+			if(Math.abs(interTmp.getX() - x) <= delta 
+					&& Math.abs(interTmp.getY() - y) <= delta) {
 				return i;
 			}
 		}
