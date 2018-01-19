@@ -52,19 +52,19 @@ public class DrawArea extends JPanel {
 							return;
 						}
 						tmpInterfaceA = tmpResultA;
-						startLinking_b();
+						startLinking_B();
 						return;
 					case LINKING_B:
 						int[] tmpResultB = clickInComp(e.getX(), e.getY());
 						if(tmpResultB == null){
 							JOptionPane.showMessageDialog(getParent()
 									, "未点击任何接口.");
-							startLinking_b();
+							startLinking_B();
 							return;
 						}else if (tmpResultB.equals(tmpInterfaceA)) {
 							JOptionPane.showMessageDialog(getParent()
 									, "接口不能连接自己.");
-							startLinking_b();
+							startLinking_B();
 							return;
 						}
 						tmpInterfaceB = tmpResultB;
@@ -119,10 +119,30 @@ public class DrawArea extends JPanel {
 	public void paint(Graphics g){
 		super.paint(g);
 		ArrayList<CirComponent> cirComponents 
-			= cirComponentList.getArrayList();
+				= cirComponentList.getArrayList();
 		for(int i=0; i<cirComponents.size(); i++){
 			add(new CirComponentLbl(cirComponents.get(i)));
 		}
+		drawLink(g);
+		if(isLinking_A()){
+			
+		}else if (isLinking_B()) {
+			
+		}
+	}
+	
+	private void drawLink(Graphics g){
+		ArrayList<CirComponent> cirComponents
+				= cirComponentList.getArrayList();
+		g.setColor(Color.BLACK);
+		
+	}
+	
+	private void drawInterfaces(Graphics g){
+		ArrayList<CirComponent> cirComponents
+				= cirComponentList.getArrayList();
+		g.setColor(Color.GREEN);
+		
 	}
 	
 	public void startEditing(String componentType){
@@ -140,8 +160,24 @@ public class DrawArea extends JPanel {
 		status = LINKING_A;
 	}
 	
-	private void startLinking_b(){
+	public boolean isLinking_A(){
+		if(status == LINKING_A){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	private void startLinking_B(){
 		status = LINKING_B;
+	}
+	
+	public boolean isLinking_B(){
+		if(status == LINKING_B){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	public void stopLinking(){
