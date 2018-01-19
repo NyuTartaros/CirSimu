@@ -41,7 +41,8 @@ public class DocUtil {
             template=configure.getTemplate(downloadType+".xml");
             File outFile=file;
             Writer out=null;
-            out=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile), "utf-8"));
+            out=new BufferedWriter(new OutputStreamWriter(
+            		new FileOutputStream(outFile), "utf-8"));
             template.process(dataMap, out);
             out.close();
         } catch (IOException e) {
