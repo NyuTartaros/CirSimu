@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import cirsimu.entity.CirComponent;
@@ -14,10 +15,14 @@ import java.awt.event.MouseAdapter;
 
 public class DrawArea extends JPanel {
 	private CirComponentList cirComponentList = new CirComponentList();
-	private CirComponentLbl tmpLbl = new CirComponentLbl();	//拖动编辑时用于预览的临时组件label
+	private CirComponentLbl tmpLbl = new CirComponentLbl();	
+			//拖动编辑时用于预览的临时组件label
+	private int[] tmpInterfaceA;	//连线时记录的临时接口
+	private int[] tmpInterfaceB;	//连线时记录的临时接口
 	private static final int WAITING = 0;
 	private static final int EDITING = 1;
-	private static final int LINKING = 2;
+	private static final int LINKING_A = 2;
+	private static final int LINKING_B = 3;
 	private int status = WAITING;
 	private String currentComponent = "";
 	
@@ -38,9 +43,33 @@ public class DrawArea extends JPanel {
 						stopEditing();
 						paint(getGraphics());
 						return;
-					case LINKING:
-						
-						break;
+					case LINKING_A:
+						int[] tmpResultA = clickInComp(e.getX(), e.getY());
+						if(tmpResultA == null){
+							JOptionPane.showMessageDialog(getParent()
+									, "未点击任何接口.");
+							stopLinking();
+							return;
+						}
+						tmpInterfaceA = tmpResultA;
+						startLinking_b();
+						return;
+					case LINKING_B:
+						int[] tmpResultB = clickInComp(e.getX(), e.getY());
+						if(tmpResultB == null){
+							JOptionPane.showMessageDialog(getParent()
+									, "未点击任何接口.");
+							startLinking_b();
+							return;
+						}else if (tmpResultB.equals(tmpInterfaceA)) {
+							JOptionPane.showMessageDialog(getParent()
+									, "接口不能连接自己.");
+							startLinking_b();
+							return;
+						}
+						tmpInterfaceB = tmpResultB;
+						setlink(tmpInterfaceA, tmpInterfaceB);
+						return;
 					case WAITING:
 						return;
 					}
@@ -70,6 +99,12 @@ public class DrawArea extends JPanel {
 					CirComponent tmpComponent = new CirComponent
 							(currentComponent, e.getX(), e.getY());
 					tmpLbl.setComponent(tmpComponent);
+					return;
+				case LINKING_A:	//TODO
+					
+					return;
+				case LINKING_B:	//TODO
+					
 					return;
 				case WAITING:
 					return;
@@ -102,11 +137,17 @@ public class DrawArea extends JPanel {
 	}
 	
 	public void startLinking(){
-		status = LINKING;
+		status = LINKING_A;
+	}
+	
+	private void startLinking_b(){
+		status = LINKING_B;
 	}
 	
 	public void stopLinking(){
 		status = WAITING;
+		tmpInterfaceA = null;
+		tmpInterfaceB = null;
 	}
 	
 	public boolean isWaiting(){
@@ -128,6 +169,11 @@ public class DrawArea extends JPanel {
 	
 	private int[] clickInComp(int x, int y){
 		return cirComponentList.pointInComp(x, y);
+	}
+	
+	private void setlink(int[] interA, int[] interB){
+		cirComponentList.setlink(interA[0], interB[1]
+				, interB[0], interB[1]);
 	}
 	
 }
