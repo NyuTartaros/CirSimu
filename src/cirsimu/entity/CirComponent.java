@@ -6,8 +6,9 @@ import java.util.HashMap;
 public class CirComponent {
 	
 	private String type;
-	private int x;
-	private int y;
+	private Point compLoc;
+//	private int x;
+//	private int y;
 	private Point[] interfaceLocs;
 	private int interfaceNum;
 	private HashMap<Integer,Integer> neighCompTable
@@ -48,8 +49,7 @@ public class CirComponent {
 	
 	public CirComponent(String type, int x, int y){
 		this.type = type;
-		this.x = x;
-		this.y = y;
+		compLoc = new Point(x, y);
 		if(type.equals("amplifier")){
 			this.interfaceNum = 3;
 		}else{
@@ -100,19 +100,19 @@ public class CirComponent {
 	}
 	
 	public void setx(int x){
-		this.x = x;
+		compLoc.setX(x);
 	}
 	
 	public int getx(){
-		return x;
+		return compLoc.getX();
 	}
 	
 	public void sety(int y){
-		this.y = y;
+		compLoc.setY(y);
 	}
 	
 	public int gety(){
-		return y;
+		return compLoc.getY();
 	}
 	
 	public void setInterfaceNum(int interfaceNum){
@@ -142,6 +142,19 @@ public class CirComponent {
 	public void setlink(int localInterface, int remoteComp, int remoteInterface){
 		neighCompTable.put(localInterface, remoteComp);
 		neighInterTable.put(localInterface, remoteInterface);
+	}
+	
+	//判断点击发生在哪个接口
+	public int pointInInterface(int x, int y) {
+		int delta = 10;	//点击误差限
+		Point interTmp;
+		for(int i=0; i<interfaceNum; i++) {
+			interTmp = new Point(compLoc.getX()+interfaceLocs[i].getX(), compLoc.getY()+interfaceLocs[i].getY());
+			if(Math.abs(interTmp.getX() - x) <= delta && Math.abs(interTmp.getY() - y) <= delta) {
+				return i+1;
+			}
+		}
+		return 0;
 	}
 
 }
