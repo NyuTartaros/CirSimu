@@ -37,6 +37,8 @@ public class CirComponent {
 		{new Point(0, 15), new Point(29, 15)};
 	private static final Point[] voltageSourceInterLoc = 
 		{new Point(0, 15), new Point(29, 15)};
+	private static final Point[] groundConnInterLoc = 
+		{new Point(0, 15), new Point(29, 15)};
 	
 	//元件名
 	public static final String voltmeter = "voltmeter";
@@ -80,7 +82,8 @@ public class CirComponent {
 		case "currentSource":
 			interfaceLocs=currentSourceInterLoc;
 			break;
-		case "":	//TODO 接地
+		case "groundConn":
+			interfaceLocs=groundConnInterLoc;
 			break;
 		case "switch":
 			interfaceLocs=switchMeterInterLoc;
