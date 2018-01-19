@@ -35,6 +35,8 @@ public class DrawArea extends JPanel {
 	
 	//TODO 实现元件拖动功能
 	//TODO 实现元件右键菜单
+	//TODO 调整元件素材，所有元件图片尺寸一致
+	//TODO 给左侧按钮添加图标
 	
 	public DrawArea(){
 		addMouseListener(new MouseAdapter() {
@@ -87,10 +89,10 @@ public class DrawArea extends JPanel {
 						setlink(tmpInterfaceA, tmpInterfaceB);
 						//DEBUG
 						System.out.println("tmpInterfaceA: "
-								+ "comp=" + tmpInterfaceA[0] 
+								+ "comp=" + tmpInterfaceA[0] + ", "
 								+ "inter=" + tmpInterfaceA[1]);
 						System.out.println("tmpInterfaceB: "
-								+ "comp=" + tmpInterfaceB[0] 
+								+ "comp=" + tmpInterfaceB[0] + ", "
 								+ "inter=" + tmpInterfaceB[1]);
 						stopLinking();
 						paint(getGraphics());
@@ -125,12 +127,6 @@ public class DrawArea extends JPanel {
 							(currentComponent, e.getX(), e.getY());
 					tmpLbl.setComponent(tmpComponent);
 					return;
-				case LINKING_A:	//TODO
-					
-					return;
-				case LINKING_B:	//TODO
-					
-					return;
 				case WAITING:
 					return;
 				}
@@ -164,6 +160,18 @@ public class DrawArea extends JPanel {
 			CirComponent comp = cirComponents.get(i);
 			HashMap<Integer,Integer> neighCompTable = comp.getNeighCompTable();
 			HashMap<Integer,Integer> neighInterTable = comp.getNeighInterTable();
+			//DEBUG
+			System.out.println("componentNo." + i);
+			System.out.println("neighCompTable:");
+			for(Integer key : neighCompTable.keySet()){
+				System.out.println("key=" + key + ", " 
+						+ "value=" + neighCompTable.get(key));
+			}
+			System.out.println("neighInterTable:");
+			for(Integer key : neighInterTable.keySet()){
+				System.out.println("key=" + key + ", " 
+						+ "value=" + neighInterTable.get(key));
+			}
 			for(Integer aInter : neighCompTable.keySet()){
 				Integer aComp = i;
 				Integer bComp = neighCompTable.get(aInter);
@@ -172,8 +180,8 @@ public class DrawArea extends JPanel {
 				Point bPoint = cirComponents.get(bComp).getInterfaceLoc(bInter);
 				Point[] linkPath = getLinkPath(aPoint, bPoint);
 				for(int j=0; j<linkPath.length-1; j++){
-					Point prev = linkPath[i];
-					Point next = linkPath[i+1];
+					Point prev = linkPath[j];
+					Point next = linkPath[j+1];
 					g.drawLine(prev.getX(), prev.getY(), next.getX(), next.getY());
 				}
 			}
@@ -303,7 +311,7 @@ public class DrawArea extends JPanel {
 	}
 	
 	private void setlink(int[] interA, int[] interB){
-		cirComponentList.setlink(interA[0], interB[1]
+		cirComponentList.setlink(interA[0], interA[1]
 				, interB[0], interB[1]);
 	}
 	
