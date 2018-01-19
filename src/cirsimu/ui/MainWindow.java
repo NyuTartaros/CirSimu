@@ -108,6 +108,10 @@ public class MainWindow extends JFrame {
 		componentToolBar_1.add(voltageSourceBtn);
 		
 		groundConnBtn = new JButton("\u63A5\u5730");
+		groundConnBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		groundConnBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -118,6 +122,10 @@ public class MainWindow extends JFrame {
 		componentToolBar_1.add(groundConnBtn);
 		
 		inductanceBtn = new JButton("\u7535\u611F");
+		inductanceBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		inductanceBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

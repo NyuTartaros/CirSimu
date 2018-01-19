@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exe4j version="6.0" transformSequenceNumber="2">
+  <directoryPresets config="F:/GitHub/CirSimu/release" />
+  <application name="CirSimu" distributionSourceDir="F:/GitHub/CirSimu/release/CirSimu">
+    <languages>
+      <principalLanguage id="en" customLocalizationFile="" />
+    </languages>
+  </application>
+  <executable name="CirSimu" type="2" iconSet="true" iconFile="F:/GitHub/CirSimu/icons/icon.ico" executableDir="." redirectStderr="true" stderrFile="error.log" stderrMode="overwrite" redirectStdout="false" stdoutFile="output.log" stdoutMode="overwrite" failOnStderrOutput="true" executableMode="1" changeWorkingDirectory="true" workingDirectory="." singleInstance="false" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" checkConsoleParameter="false" globalSingleInstance="false" singleInstanceActivate="true" dpiAware="java9+" amd64="true">
+    <messageSet />
+    <versionInfo include="false" fileVersion="" fileDescription="" legalCopyright="" internalName="" productName="" companyName="" productVersion="" />
+  </executable>
+  <splashScreen show="true" width="0" height="0" bitmapFile="F:/GitHub/CirSimu/icons/icon.png" textOverlay="false">
+    <text>
+      <statusLine x="20" y="20" text="" fontSize="8" fontColor="0,0,0" bold="false" />
+      <versionLine x="20" y="40" text="version %VERSION%" fontSize="8" fontColor="0,0,0" bold="false" />
+    </text>
+  </splashScreen>
+  <java mainClass="cirsimu.main.CirSimu" mainMode="1" vmParameters="" arguments="" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true" minVersion="1.7" maxVersion="" allowBetaVM="false" jdkOnly="false">
+    <searchSequence>
+      <registry />
+      <envVar name="JAVA_HOME" />
+      <envVar name="JDK_HOME" />
+      <directory location="C:/Program Files/Java/jre1.8.0_151" />
+    </searchSequence>
+    <classPath>
+      <archive location="F:/GitHub/CirSimu/release/CirSimu/CirSimu.jar" failOnError="false" />
+      <archive location="F:/GitHub/CirSimu/lib/freemarker.jar" failOnError="true" />
+    </classPath>
+    <modulePath />
+    <nativeLibraryDirectories />
+    <vmOptions />
+  </java>
+  <includedFiles />
+  <unextractableFiles />
+</exe4j>
