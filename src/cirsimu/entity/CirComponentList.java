@@ -31,8 +31,10 @@ public class CirComponentList {
 	public int[] pointInComp(int x, int y){
 		int[] result = new int[2];
 		for(int i=0; i<cirComponents.size(); i++){
+			//DEBUG
+//			System.out.println("compNo."+i);
 			int inter = cirComponents.get(i).pointInInterface(x, y);
-			if( inter > 0){
+			if( inter > -1){
 				result[0] = i;
 				result[1] = inter;
 				return result;

@@ -2,6 +2,8 @@ package cirsimu.entity;
 
 import java.util.HashMap;
 
+import cirsimu.ui.DrawArea;
+
 public class CirComponent {
 	
 	private String type;
@@ -49,6 +51,9 @@ public class CirComponent {
 	
 	
 	public CirComponent(String type, int x, int y){
+		//DEBUG
+//		System.out.println("CirComponent(): type="+type+", "
+//				+"x=" + x + ", " + "y=" + y);
 		this.type = type;
 		compLoc = new Point(x, y);
 		if(type.equals("amplifier")){
@@ -151,7 +156,9 @@ public class CirComponent {
 	}
 	
 	public Point getInterfaceLoc(int inter){
-		return interfaceLocs[inter];
+		Point interLoc = new Point(compLoc.getX()+interfaceLocs[inter].getX()
+				, compLoc.getY()+interfaceLocs[inter].getY());
+		return interLoc;
 	}
 	
 	public void setlink(int localInterface, int remoteComp, int remoteInterface){
@@ -161,17 +168,23 @@ public class CirComponent {
 	
 	//判断点击发生在哪个接口
 	public int pointInInterface(int x, int y) {
-		int delta = 10;	//点击误差限
+		int delta = DrawArea.delta;	//点击误差限
 		Point interTmp;
 		for(int i=0; i<interfaceNum; i++) {
 			interTmp = new Point(compLoc.getX()+interfaceLocs[i].getX()
 					, compLoc.getY()+interfaceLocs[i].getY());
+			//DEBUG
+//			System.out.println("interfaceNo."+i);
+//			System.out.println("Math.abs(interTmp.getX() - x)="
+//					+ Math.abs(interTmp.getX() - x));
+//			System.out.println("Math.abs(interTmp.getY() - y)="
+//					+ Math.abs(interTmp.getY() - y));
 			if(Math.abs(interTmp.getX() - x) <= delta 
 					&& Math.abs(interTmp.getY() - y) <= delta) {
 				return i;
 			}
 		}
-		return 0;
+		return -1;
 	}
 
 }

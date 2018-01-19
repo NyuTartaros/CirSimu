@@ -3,6 +3,8 @@ package cirsimu.ui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -12,6 +14,7 @@ import cirsimu.entity.CirComponentList;
 import cirsimu.entity.Point;
 
 import java.awt.event.MouseMotionAdapter;
+import java.lang.reflect.Array;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 
@@ -21,12 +24,14 @@ public class DrawArea extends JPanel {
 			//拖动编辑时用于预览的临时组件label
 	private int[] tmpInterfaceA;	//连线时记录的临时接口
 	private int[] tmpInterfaceB;	//连线时记录的临时接口
+	private int status = WAITING;
+	private String currentComponent = "";
+	
 	private static final int WAITING = 0;
 	private static final int EDITING = 1;
 	private static final int LINKING_A = 2;
 	private static final int LINKING_B = 3;
-	private int status = WAITING;
-	private String currentComponent = "";
+	public static final int delta = 5;	//接口点击误差限
 	
 	//TODO 实现元件拖动功能
 	//TODO 实现元件右键菜单
@@ -47,6 +52,9 @@ public class DrawArea extends JPanel {
 						return;
 					case LINKING_A:
 						int[] tmpResultA = clickInComp(e.getX(), e.getY());
+						//DEBUG
+						System.out.println("DrawArea.click_LINKING_A: "
+								+ "x=" + e.getX() + ", " + "y=" + e.getY());
 						if(tmpResultA == null){
 							JOptionPane.showMessageDialog(getParent()
 									, "未点击任何接口.");
@@ -54,7 +62,13 @@ public class DrawArea extends JPanel {
 							return;
 						}
 						tmpInterfaceA = tmpResultA;
+						//DEBUG
+//						System.out.println("clickAt: " + tmpResultA[0]
+//								+ "," + tmpResultA[1]);
+						System.out.println("clickAt: " + tmpInterfaceA[0]
+								+ "," + tmpInterfaceA[1]);
 						startLinking_B();
+						paint(getGraphics());
 						return;
 					case LINKING_B:
 						int[] tmpResultB = clickInComp(e.getX(), e.getY());
@@ -63,7 +77,7 @@ public class DrawArea extends JPanel {
 									, "未点击任何接口.");
 							startLinking_B();
 							return;
-						}else if (tmpResultB.equals(tmpInterfaceA)) {
+						}else if (Arrays.equals(tmpResultB, tmpInterfaceA)) {
 							JOptionPane.showMessageDialog(getParent()
 									, "接口不能连接自己.");
 							startLinking_B();
@@ -71,6 +85,15 @@ public class DrawArea extends JPanel {
 						}
 						tmpInterfaceB = tmpResultB;
 						setlink(tmpInterfaceA, tmpInterfaceB);
+						//DEBUG
+						System.out.println("tmpInterfaceA: "
+								+ "comp=" + tmpInterfaceA[0] 
+								+ "inter=" + tmpInterfaceA[1]);
+						System.out.println("tmpInterfaceB: "
+								+ "comp=" + tmpInterfaceB[0] 
+								+ "inter=" + tmpInterfaceB[1]);
+						stopLinking();
+						paint(getGraphics());
 						return;
 					case WAITING:
 						return;
@@ -137,7 +160,24 @@ public class DrawArea extends JPanel {
 		ArrayList<CirComponent> cirComponents
 				= cirComponentList.getArrayList();
 		g.setColor(Color.BLACK);
-		
+		for(int i=0; i<cirComponents.size(); i++){
+			CirComponent comp = cirComponents.get(i);
+			HashMap<Integer,Integer> neighCompTable = comp.getNeighCompTable();
+			HashMap<Integer,Integer> neighInterTable = comp.getNeighInterTable();
+			for(Integer aInter : neighCompTable.keySet()){
+				Integer aComp = i;
+				Integer bComp = neighCompTable.get(aInter);
+				Integer bInter = neighInterTable.get(aInter);
+				Point aPoint = comp.getInterfaceLoc(aInter);
+				Point bPoint = cirComponents.get(bComp).getInterfaceLoc(bInter);
+				Point[] linkPath = getLinkPath(aPoint, bPoint);
+				for(int j=0; j<linkPath.length-1; j++){
+					Point prev = linkPath[i];
+					Point next = linkPath[i+1];
+					g.drawLine(prev.getX(), prev.getY(), next.getX(), next.getY());
+				}
+			}
+		}
 	}
 	
 	private void drawInterfaces(Graphics g){
@@ -145,7 +185,6 @@ public class DrawArea extends JPanel {
 				= cirComponentList.getArrayList();
 		g.setColor(Color.GREEN);
 		for(int i=0; i<cirComponents.size(); i++){
-			int delta = 5;	//接口方框半边长
 			CirComponent tmpComp = cirComponents.get(i);
 			Point[] interLocs = tmpComp.getInterfaceLocs();
 			for(int j=0; j<interLocs.length; j++){
@@ -160,19 +199,43 @@ public class DrawArea extends JPanel {
 	}
 	
 	private void drawInterfaces_B(Graphics g){
-		int delta = 5;	//接口方框半边长
+		drawInterfaces(g);
 		ArrayList<CirComponent> cirComponents
 				= cirComponentList.getArrayList();
 		g.setColor(Color.RED);
 		int comp = tmpInterfaceA[0];
 		int inter = tmpInterfaceA[1];
+		//DEBUG
+//		System.out.println("comp=" + comp + ", " + "inter=" + inter);
 		Point interLoc = cirComponents.get(comp).getInterfaceLoc(inter);
 		int x = interLoc.getX();
 		int y = interLoc.getY();
+		//DEBUG
+//		System.out.println("x=" + x + ", " + "y=" + y);
 		g.drawLine(x-delta, y-delta, x-delta, y+delta);
 		g.drawLine(x-delta, y+delta, x+delta, y+delta);
 		g.drawLine(x+delta, y+delta, x+delta, y-delta);
 		g.drawLine(x+delta, y-delta, x-delta, y-delta);
+	}
+	
+	private Point[] getLinkPath(Point aPoint, Point bPoint){
+		Point a;
+		Point b;
+		if(aPoint.getX() == bPoint.getX() || aPoint.getY() == bPoint.getY()){
+			Point[] result = {aPoint, bPoint};
+			return result;
+		}
+		if(aPoint.getX() < bPoint.getX()){
+			a = aPoint;
+			b = bPoint;
+		}else{
+			a = bPoint;
+			b = aPoint;
+		}
+		Point c;
+		c = new Point(a.getX(), b.getY());
+		Point[] result = {a, c, b};
+		return result;
 	}
 	
 	public void startEditing(String componentType){
@@ -188,6 +251,7 @@ public class DrawArea extends JPanel {
 	
 	public void startLinking(){
 		status = LINKING_A;
+		paint(getGraphics());
 	}
 	
 	public boolean isLinking_A(){
@@ -214,6 +278,7 @@ public class DrawArea extends JPanel {
 		status = WAITING;
 		tmpInterfaceA = null;
 		tmpInterfaceB = null;
+		paint(getGraphics());
 	}
 	
 	public boolean isWaiting(){
