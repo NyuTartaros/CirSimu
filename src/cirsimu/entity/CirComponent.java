@@ -62,7 +62,32 @@ public class CirComponent {
 		case "voltmeter":
 			interfaceLocs=voltmeterInterLoc;
 			break;
-		case "
+		case "resistance":
+			interfaceLocs=resistanceInterLoc;
+			break;
+		case "capicititance":
+			interfaceLocs=capicititanceInterLoc;
+			break;
+		case "diode":
+			interfaceLocs=diodeInterLoc;
+			break;
+		case "amplifier":
+			interfaceLocs=amplifierMeterInterLoc;
+			break;
+		case "voltageSource":
+			interfaceLocs=voltageSourceInterLoc;
+			break;
+		case "currentSource":
+			interfaceLocs=currentSourceInterLoc;
+			break;
+		case "":	//TODO ½ÓµØ
+			break;
+		case "switch":
+			interfaceLocs=switchMeterInterLoc;
+			break;
+		case "inductance":
+			interfaceLocs=inductanceInterLoc;
+			break;
 		}
 	}
 	
