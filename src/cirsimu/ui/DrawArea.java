@@ -148,6 +148,7 @@ public class DrawArea extends JPanel {
 		if(isLinking_A()){
 			drawInterfaces(g);
 		}else if (isLinking_B()) {
+			drawInterfaces(g);
 			drawInterfaces_B(g);
 		}
 	}
@@ -198,16 +199,12 @@ public class DrawArea extends JPanel {
 			for(int j=0; j<interLocs.length; j++){
 				int x = interLocs[j].getX();
 				int y = interLocs[j].getY();
-				g.drawLine(x-delta, y-delta, x-delta, y+delta);
-				g.drawLine(x-delta, y+delta, x+delta, y+delta);
-				g.drawLine(x+delta, y+delta, x+delta, y-delta);
-				g.drawLine(x+delta, y-delta, x-delta, y-delta);
+				g.drawRect(x-delta, y-delta, 2*delta, 2*delta);
 			}
 		}
 	}
 	
 	private void drawInterfaces_B(Graphics g){
-		drawInterfaces(g);
 		ArrayList<CirComponent> cirComponents
 				= cirComponentList.getArrayList();
 		g.setColor(Color.RED);
@@ -220,10 +217,7 @@ public class DrawArea extends JPanel {
 		int y = interLoc.getY();
 		//DEBUG
 //		System.out.println("x=" + x + ", " + "y=" + y);
-		g.drawLine(x-delta, y-delta, x-delta, y+delta);
-		g.drawLine(x-delta, y+delta, x+delta, y+delta);
-		g.drawLine(x+delta, y+delta, x+delta, y-delta);
-		g.drawLine(x+delta, y-delta, x-delta, y-delta);
+		g.drawRect(x-delta, y-delta, 2*delta, 2*delta);
 	}
 	
 	private Point[] getLinkPath(Point aPoint, Point bPoint){
