@@ -19,27 +19,27 @@ public class CirComponent {
 	
 	//TODO 下面的数据需要校正
 	private static final Point[] ampereMeterInterLoc = 
-		{new Point(0, 15), new Point(29, 15)};
+		{new Point(0, 15), new Point(119, 15)};
 	private static final Point[] voltmeterInterLoc = 
-		{new Point(0, 15), new Point(29, 15)};
+		{new Point(0, 15), new Point(119, 15)};
 	private static final Point[] amplifierInterLoc = 
-		{new Point(0, 10), new Point(0, 20), new Point(29, 15)};
+		{new Point(0, 14), new Point(0, 35), new Point(119, 24)};
 	private static final Point[] capicititanceInterLoc = 
-		{new Point(0, 15), new Point(29, 15)};
+		{new Point(0, 15), new Point(119, 15)};
 	private static final Point[] currentSourceInterLoc = 
-		{new Point(0, 15), new Point(29, 15)};
+		{new Point(0, 15), new Point(119, 15)};
 	private static final Point[] diodeInterLoc = 
-		{new Point(0, 15), new Point(29, 15)};
+		{new Point(0, 15), new Point(119, 15)};
 	private static final Point[] inductanceInterLoc = 
-		{new Point(0, 15), new Point(29, 15)};
+		{new Point(0, 15), new Point(119, 15)};
 	private static final Point[] resistanceInterLoc = 
-		{new Point(0, 15), new Point(29, 15)};
+		{new Point(0, 15), new Point(119, 15)};
 	private static final Point[] switchMeterInterLoc = 
-		{new Point(0, 15), new Point(29, 15)};
+		{new Point(0, 15), new Point(119, 15)};
 	private static final Point[] voltageSourceInterLoc = 
-		{new Point(0, 15), new Point(29, 15)};
+		{new Point(0, 15), new Point(119, 15)};
 	private static final Point[] groundConnInterLoc = 
-		{new Point(0, 15)};
+		{new Point(25, 0)};
 	
 	//元件名
 	public static final String voltmeter = "voltmeter";
