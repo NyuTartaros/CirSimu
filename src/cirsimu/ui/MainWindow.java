@@ -50,7 +50,7 @@ public class MainWindow extends JFrame {
 	private JMenuItem menuItem_1;
 	
 	public MainWindow() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\eclipse-workspace\\CirSimu\\icons\\icon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("./icons/icon.png"));
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("\u7535\u8DEF\u7F16\u8F91\u4EFF\u771F");
