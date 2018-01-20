@@ -1,6 +1,7 @@
 package cirsimu.ui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 
 import cirsimu.entity.CirComponent;
 import cirsimu.entity.CirComponentList;
@@ -100,10 +102,6 @@ public class DrawArea extends JPanel {
 					case WAITING:
 						return;
 					}
-					if(isWaiting()){
-						return;
-					}
-
 				}
 				//按住Ctrl左键点击：取消当前编辑或连接
 				if(e.isControlDown() && e.getButton()==MouseEvent.BUTTON1){
@@ -112,6 +110,17 @@ public class DrawArea extends JPanel {
 					stopEditing();
 					stopLinking();
 					return;
+				}
+				//右键点击，弹出右键菜单
+				if(e.getButton()==MouseEvent.BUTTON3) {
+					switch (status) {
+					case WAITING:
+						RightMenu rightMenu = new RightMenu();
+						rightMenu.show(e.getComponent(), e.getX(), e.getY());
+						return;
+					default:
+						return;
+					}
 				}
 			}
 		});
@@ -162,17 +171,17 @@ public class DrawArea extends JPanel {
 			HashMap<Integer,Integer> neighCompTable = comp.getNeighCompTable();
 			HashMap<Integer,Integer> neighInterTable = comp.getNeighInterTable();
 			//DEBUG
-			System.out.println("componentNo." + i);
-			System.out.println("neighCompTable:");
-			for(Integer key : neighCompTable.keySet()){
-				System.out.println("key=" + key + ", " 
-						+ "value=" + neighCompTable.get(key));
-			}
-			System.out.println("neighInterTable:");
-			for(Integer key : neighInterTable.keySet()){
-				System.out.println("key=" + key + ", " 
-						+ "value=" + neighInterTable.get(key));
-			}
+//			System.out.println("componentNo." + i);
+//			System.out.println("neighCompTable:");
+//			for(Integer key : neighCompTable.keySet()){
+//				System.out.println("key=" + key + ", " 
+//						+ "value=" + neighCompTable.get(key));
+//			}
+//			System.out.println("neighInterTable:");
+//			for(Integer key : neighInterTable.keySet()){
+//				System.out.println("key=" + key + ", " 
+//						+ "value=" + neighInterTable.get(key));
+//			}
 			for(Integer aInter : neighCompTable.keySet()){
 				Integer aComp = i;
 				Integer bComp = neighCompTable.get(aInter);
