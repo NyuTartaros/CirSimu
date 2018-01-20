@@ -22,7 +22,7 @@ public class CirComponent {
 		{new Point(0, 15), new Point(29, 15)};
 	private static final Point[] voltmeterInterLoc = 
 		{new Point(0, 15), new Point(29, 15)};
-	private static final Point[] amplifierMeterInterLoc = 
+	private static final Point[] amplifierInterLoc = 
 		{new Point(0, 10), new Point(0, 20), new Point(29, 15)};
 	private static final Point[] capicititanceInterLoc = 
 		{new Point(0, 15), new Point(29, 15)};
@@ -39,7 +39,7 @@ public class CirComponent {
 	private static final Point[] voltageSourceInterLoc = 
 		{new Point(0, 15), new Point(29, 15)};
 	private static final Point[] groundConnInterLoc = 
-		{new Point(0, 15), new Point(29, 15)};
+		{new Point(0, 15)};
 	
 	//Ôª¼þÃû
 	public static final String voltmeter = "voltmeter";
@@ -48,6 +48,11 @@ public class CirComponent {
 	public static final String capicititance = "capicititance";
 	public static final String diode = "diode";
 	public static final String amplifier = "amplifier";
+	public static final String currentSource = "currentSource";
+	public static final String groundConn = "groundConn";
+	public static final String inductance = "inductance";
+	public static final String switchComp = "switch";
+	public static final String voltageSource = "voltageSource";
 	
 	
 	public CirComponent(String type, int x, int y){
@@ -56,43 +61,45 @@ public class CirComponent {
 //				+"x=" + x + ", " + "y=" + y);
 		this.type = type;
 		compLoc = new Point(x, y);
-		if(type.equals("amplifier")){
+		if(type.equals(amplifier)){
 			this.interfaceNum = 3;
+		}else if (type.equals(groundConn)) {
+			this.interfaceNum = 1;
 		}else{
 			this.interfaceNum = 2;
 		}
 		switch(type){
-		case "amperemeter":
+		case amperemeter:
 			interfaceLocs=ampereMeterInterLoc;
 			break;
-		case "voltmeter":
+		case voltmeter:
 			interfaceLocs=voltmeterInterLoc;
 			break;
-		case "resistance":
+		case resistance:
 			interfaceLocs=resistanceInterLoc;
 			break;
-		case "capicititance":
+		case capicititance:
 			interfaceLocs=capicititanceInterLoc;
 			break;
-		case "diode":
+		case diode:
 			interfaceLocs=diodeInterLoc;
 			break;
-		case "amplifier":
-			interfaceLocs=amplifierMeterInterLoc;
+		case amplifier:
+			interfaceLocs=amplifierInterLoc;
 			break;
-		case "voltageSource":
+		case voltageSource:
 			interfaceLocs=voltageSourceInterLoc;
 			break;
-		case "currentSource":
+		case  currentSource:
 			interfaceLocs=currentSourceInterLoc;
 			break;
-		case "groundConn":
+		case groundConn:
 			interfaceLocs=groundConnInterLoc;
 			break;
-		case "switch":
+		case switchComp:
 			interfaceLocs=switchMeterInterLoc;
 			break;
-		case "inductance":
+		case inductance:
 			interfaceLocs=inductanceInterLoc;
 			break;
 		}
