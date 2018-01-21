@@ -32,6 +32,7 @@ public class RightMenu extends JPopupMenu{
 		mRotate.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				//TODO DEBUG
 				parentComp.rotate();
 				drawArea.paint(drawArea.getGraphics());
 			}
