@@ -6,6 +6,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import cirsimu.entity.CirComponent;
 import cirsimu.util.FileHelper;
 
 import javax.swing.JToolBar;
@@ -68,7 +69,7 @@ public class MainWindow extends JFrame {
 		voltmeterBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				drawArea.startEditing("voltmeter");
+				drawArea.startEditing(CirComponent.voltmeter);
 			}
 		});
 		voltmeterBtn.setIcon(null);
@@ -79,7 +80,7 @@ public class MainWindow extends JFrame {
 		resistanceBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				drawArea.startEditing("resistance");
+				drawArea.startEditing(CirComponent.resistance);
 			}
 		});
 		resistanceBtn.setIcon(null);
@@ -90,7 +91,7 @@ public class MainWindow extends JFrame {
 		diodeBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				drawArea.startEditing("diode");
+				drawArea.startEditing(CirComponent.diode);
 			}
 		});
 		diodeBtn.setIcon(null);
@@ -101,7 +102,7 @@ public class MainWindow extends JFrame {
 		voltageSourceBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				drawArea.startEditing("voltageSource");
+				drawArea.startEditing(CirComponent.voltageSource);
 			}
 		});
 		voltageSourceBtn.setToolTipText("\u7535\u538B\u6E90");
@@ -115,7 +116,7 @@ public class MainWindow extends JFrame {
 		groundConnBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				drawArea.startEditing("groundConn");
+				drawArea.startEditing(CirComponent.groundConn);
 			}
 		});
 		groundConnBtn.setToolTipText("\u63A5\u5730");
@@ -129,7 +130,7 @@ public class MainWindow extends JFrame {
 		inductanceBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				drawArea.startEditing("inductance");
+				drawArea.startEditing(CirComponent.inductance);
 			}
 		});
 		inductanceBtn.setToolTipText("\u7535\u611F");
@@ -144,7 +145,7 @@ public class MainWindow extends JFrame {
 		amperemeterBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				drawArea.startEditing("amperemeter");
+				drawArea.startEditing(CirComponent.amperemeter);
 			}
 		});
 		amperemeterBtn.setIcon(null);
@@ -155,7 +156,7 @@ public class MainWindow extends JFrame {
 		capicititanceBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				drawArea.startEditing("capicititance");
+				drawArea.startEditing(CirComponent.capicititance);
 			}
 		});
 		capicititanceBtn.setIcon(null);
@@ -166,7 +167,7 @@ public class MainWindow extends JFrame {
 		amplifierBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				drawArea.startEditing("amplifier");
+				drawArea.startEditing(CirComponent.amplifier);
 			}
 		});
 		amplifierBtn.setIcon(null);
@@ -177,7 +178,7 @@ public class MainWindow extends JFrame {
 		currentSourceBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				drawArea.startEditing("currentSource");
+				drawArea.startEditing(CirComponent.currentSource);
 			}
 		});
 		currentSourceBtn.setToolTipText("\u7535\u6D41\u6E90");
@@ -187,7 +188,7 @@ public class MainWindow extends JFrame {
 		switchBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				drawArea.startEditing("switch");
+				drawArea.startEditing(CirComponent.switchComp);
 			}
 		});
 		switchBtn.setToolTipText("\u5F00\u5173");
