@@ -195,6 +195,10 @@ public class CirComponent {
 		return -1;
 	}
 	
+	public int getRotateCount() {
+		return rotateCount;
+	}
+	
 	//旋转元件
 	//TODO 需要component的size来计算旋转后的interLoc
 	public void rotate(){

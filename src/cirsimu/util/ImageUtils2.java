@@ -64,37 +64,37 @@ public class ImageUtils2 {
         }  
           
         //main方法,用于测试  
-    public static void main(String[] args) throws IOException {  
-         // 测试来源图片    
-        String pathname = System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "testmm.jpg";    
-        File file = new File(pathname);    
-        // 测试生成图片    
-        String testPath = System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "test.jpg";    
-        File outFile = new File(testPath);    
-          
-        //顺时针旋转90度测试  
-        BufferedImage image = ImageIO.read(file);    
-        image=rotateClockwise90(image);  
-        //ImageIO.write(image, "png", outFile);    
-         
-        //逆时针旋转90度测试  
-        BufferedImage image2 = ImageIO.read(file);    
-        image2=rotateCounterclockwise90(image2);  
-        //ImageIO.write(image2, "png", outFile);   
-          
-        //旋转180度测试  
-        BufferedImage image3 = ImageIO.read(file);    
-        image3=rotate180(image3);  
-        //ImageIO.write(image3, "png", outFile);    
-         
-        //水平旋转测试  
-        BufferedImage image4 = ImageIO.read(file);    
-        image4=rotateHorizon(image4);  
-        //ImageIO.write(image4, "png", outFile);  
-          
-        //垂直旋转测试  
-        BufferedImage image5 = ImageIO.read(file);    
-        image5=rotateVertical(image5);  
-        ImageIO.write(image5, "png", outFile);  
-    }  
+//    public static void main(String[] args) throws IOException {  
+//         // 测试来源图片    
+//        String pathname = System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "testmm.jpg";    
+//        File file = new File(pathname);    
+//        // 测试生成图片    
+//        String testPath = System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "test.jpg";    
+//        File outFile = new File(testPath);    
+//          
+//        //顺时针旋转90度测试  
+//        BufferedImage image = ImageIO.read(file);    
+//        image=rotateClockwise90(image);  
+//        //ImageIO.write(image, "png", outFile);    
+//         
+//        //逆时针旋转90度测试  
+//        BufferedImage image2 = ImageIO.read(file);    
+//        image2=rotateCounterclockwise90(image2);  
+//        //ImageIO.write(image2, "png", outFile);   
+//          
+//        //旋转180度测试  
+//        BufferedImage image3 = ImageIO.read(file);    
+//        image3=rotate180(image3);  
+//        //ImageIO.write(image3, "png", outFile);    
+//         
+//        //水平旋转测试  
+//        BufferedImage image4 = ImageIO.read(file);    
+//        image4=rotateHorizon(image4);  
+//        //ImageIO.write(image4, "png", outFile);  
+//          
+//        //垂直旋转测试  
+//        BufferedImage image5 = ImageIO.read(file);    
+//        image5=rotateVertical(image5);  
+//        ImageIO.write(image5, "png", outFile);  
+//    }  
 }  
