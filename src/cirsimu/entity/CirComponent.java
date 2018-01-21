@@ -12,6 +12,7 @@ public class CirComponent {
 //	private int y;
 	private Point[] interfaceLocs;
 	private int interfaceNum;
+	private int rotateCount = 0;
 	private HashMap<Integer,Integer> neighCompTable
 		= new HashMap<Integer,Integer>();	//邻接组件表
 	private HashMap<Integer,Integer> neighInterTable
@@ -192,6 +193,17 @@ public class CirComponent {
 			}
 		}
 		return -1;
+	}
+	
+	//旋转元件
+	//TODO 需要component的size来计算旋转后的interLoc
+	public void rotate(){
+		rotateCount++;
+		rotateCount = rotateCount%4;
+		for(int i=0; i<interfaceLocs.length; i++){
+			
+		}
+		
 	}
 
 }
