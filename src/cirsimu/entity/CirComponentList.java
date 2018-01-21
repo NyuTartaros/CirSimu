@@ -15,6 +15,10 @@ public class CirComponentList {
 		cirComponents.add(cirComponent);
 	}
 	
+	public CirComponent get(int index) {
+		return cirComponents.get(index);
+	}
+	
 	public void setlink(Integer comp1, Integer interface1
 			, Integer comp2, Integer interface2){
 		CirComponent cirComponent1 = cirComponents.get(comp1);

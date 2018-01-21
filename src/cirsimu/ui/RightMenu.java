@@ -3,6 +3,10 @@ package cirsimu.ui;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import cirsimu.entity.CirComponent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 public class RightMenu extends JPopupMenu{
 
 	private JMenuItem mCut;
@@ -11,7 +15,12 @@ public class RightMenu extends JPopupMenu{
 	private JMenuItem mRotate;
 	private JMenuItem mArrti;
 	
-	public RightMenu() {
+	private DrawArea drawArea;
+	private CirComponent parentComp;
+	
+	public RightMenu(DrawArea drawArea, CirComponent parentComp) {
+		this.drawArea = drawArea;
+		this.parentComp = parentComp;
 		mCut = new JMenuItem("剪切");
 		mCut.setIcon(null);
 		mCopy = new JMenuItem("复制");
@@ -19,6 +28,12 @@ public class RightMenu extends JPopupMenu{
 		mPaste = new JMenuItem("复制");
 		mPaste.setIcon(null);
 		mRotate = new JMenuItem("旋转");
+		mRotate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				parentComp.rotate();
+			}
+		});
 		mRotate.setIcon(null);
 		mArrti = new JMenuItem("属性");
 		mArrti.setIcon(null);

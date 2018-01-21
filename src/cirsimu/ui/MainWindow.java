@@ -33,7 +33,6 @@ public class MainWindow extends JFrame {
 	private JButton voltageSourceBtn;
 	private JButton groundConnBtn;
 	private JButton inductanceBtn;
-	private JToolBar componentToolBar_2;
 	private JButton amperemeterBtn;
 	private JButton capicititanceBtn;
 	private JButton amplifierBtn;
@@ -83,6 +82,17 @@ public class MainWindow extends JFrame {
 				drawArea.startEditing(CirComponent.resistance);
 			}
 		});
+		
+		amperemeterBtn = new JButton("\u7535\u6D41\u8868");
+		componentToolBar_1.add(amperemeterBtn);
+		amperemeterBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				drawArea.startEditing(CirComponent.amperemeter);
+			}
+		});
+		amperemeterBtn.setIcon(null);
+		amperemeterBtn.setToolTipText("\u7535\u6D41\u8868");
 		resistanceBtn.setIcon(null);
 		resistanceBtn.setToolTipText("\u7535\u963B");
 		componentToolBar_1.add(resistanceBtn);
@@ -94,6 +104,17 @@ public class MainWindow extends JFrame {
 				drawArea.startEditing(CirComponent.diode);
 			}
 		});
+		
+		capicititanceBtn = new JButton("\u7535\u5BB9");
+		componentToolBar_1.add(capicititanceBtn);
+		capicititanceBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				drawArea.startEditing(CirComponent.capicititance);
+			}
+		});
+		capicititanceBtn.setIcon(null);
+		capicititanceBtn.setToolTipText("\u7535\u5BB9");
 		diodeBtn.setIcon(null);
 		diodeBtn.setToolTipText("\u4E8C\u6781\u7BA1");
 		componentToolBar_1.add(diodeBtn);
@@ -105,6 +126,17 @@ public class MainWindow extends JFrame {
 				drawArea.startEditing(CirComponent.voltageSource);
 			}
 		});
+		
+		amplifierBtn = new JButton("\u653E\u5927\u5668");
+		componentToolBar_1.add(amplifierBtn);
+		amplifierBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				drawArea.startEditing(CirComponent.amplifier);
+			}
+		});
+		amplifierBtn.setIcon(null);
+		amplifierBtn.setToolTipText("\u8FD0\u7B97\u653E\u5927\u5668");
 		voltageSourceBtn.setToolTipText("\u7535\u538B\u6E90");
 		componentToolBar_1.add(voltageSourceBtn);
 		
@@ -119,6 +151,26 @@ public class MainWindow extends JFrame {
 				drawArea.startEditing(CirComponent.groundConn);
 			}
 		});
+		
+		currentSourceBtn = new JButton("\u7535\u6D41\u6E90");
+		componentToolBar_1.add(currentSourceBtn);
+		currentSourceBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				drawArea.startEditing(CirComponent.currentSource);
+			}
+		});
+		currentSourceBtn.setToolTipText("\u7535\u6D41\u6E90");
+		
+		switchBtn = new JButton("\u5F00\u5173");
+		componentToolBar_1.add(switchBtn);
+		switchBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				drawArea.startEditing(CirComponent.switchComp);
+			}
+		});
+		switchBtn.setToolTipText("\u5F00\u5173");
 		groundConnBtn.setToolTipText("\u63A5\u5730");
 		componentToolBar_1.add(groundConnBtn);
 		
@@ -133,68 +185,9 @@ public class MainWindow extends JFrame {
 				drawArea.startEditing(CirComponent.inductance);
 			}
 		});
-		inductanceBtn.setToolTipText("\u7535\u611F");
-		componentToolBar_1.add(inductanceBtn);
-		
-		componentToolBar_2 = new JToolBar();
-		componentToolBar_2.setOrientation(SwingConstants.VERTICAL);
-		componentToolBar_2.setFloatable(false);
-		componentBtnBar.add(componentToolBar_2);
-		
-		amperemeterBtn = new JButton("\u7535\u6D41\u8868");
-		amperemeterBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				drawArea.startEditing(CirComponent.amperemeter);
-			}
-		});
-		amperemeterBtn.setIcon(null);
-		amperemeterBtn.setToolTipText("\u7535\u6D41\u8868");
-		componentToolBar_2.add(amperemeterBtn);
-		
-		capicititanceBtn = new JButton("\u7535\u5BB9");
-		capicititanceBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				drawArea.startEditing(CirComponent.capicititance);
-			}
-		});
-		capicititanceBtn.setIcon(null);
-		capicititanceBtn.setToolTipText("\u7535\u5BB9");
-		componentToolBar_2.add(capicititanceBtn);
-		
-		amplifierBtn = new JButton("\u653E\u5927\u5668");
-		amplifierBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				drawArea.startEditing(CirComponent.amplifier);
-			}
-		});
-		amplifierBtn.setIcon(null);
-		amplifierBtn.setToolTipText("\u8FD0\u7B97\u653E\u5927\u5668");
-		componentToolBar_2.add(amplifierBtn);
-		
-		currentSourceBtn = new JButton("\u7535\u6D41\u6E90");
-		currentSourceBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				drawArea.startEditing(CirComponent.currentSource);
-			}
-		});
-		currentSourceBtn.setToolTipText("\u7535\u6D41\u6E90");
-		componentToolBar_2.add(currentSourceBtn);
-		
-		switchBtn = new JButton("\u5F00\u5173");
-		switchBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				drawArea.startEditing(CirComponent.switchComp);
-			}
-		});
-		switchBtn.setToolTipText("\u5F00\u5173");
-		componentToolBar_2.add(switchBtn);
 		
 		wireBtn = new JButton("\u5BFC\u7EBF");
+		componentToolBar_1.add(wireBtn);
 		wireBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -202,7 +195,8 @@ public class MainWindow extends JFrame {
 			}
 		});
 		wireBtn.setToolTipText("\u5BFC\u7EBF");
-		componentToolBar_2.add(wireBtn);
+		inductanceBtn.setToolTipText("\u7535\u611F");
+		componentToolBar_1.add(inductanceBtn);
 		
 		drawArea = new DrawArea();
 		getContentPane().add(drawArea, BorderLayout.CENTER);
