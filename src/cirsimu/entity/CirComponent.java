@@ -8,6 +8,7 @@ public class CirComponent {
 	
 	private String type;
 	private Point compLoc;
+	private Point compSize;
 //	private int x;
 //	private int y;
 	private Point[] interfaceLocs;
@@ -18,7 +19,12 @@ public class CirComponent {
 	private HashMap<Integer,Integer> neighInterTable
 		= new HashMap<Integer,Integer>();	//邻接接口表
 	
-	//TODO 下面的数据需要校正
+	//元件尺寸
+	private static final Point defaultSize = new Point(120, 30);
+	private static final Point amplifierSize = new Point(120, 50);
+	private static final Point groundConnSize = new Point(50, 50);
+	
+	//元件接口位置
 	private static final Point[] ampereMeterInterLoc = 
 		{new Point(0, 15), new Point(119, 15)};
 	private static final Point[] voltmeterInterLoc = 
@@ -71,37 +77,48 @@ public class CirComponent {
 		}
 		switch(type){
 		case amperemeter:
-			interfaceLocs=ampereMeterInterLoc;
+			interfaceLocs = ampereMeterInterLoc;
+			compSize = defaultSize;
 			break;
 		case voltmeter:
-			interfaceLocs=voltmeterInterLoc;
+			interfaceLocs = voltmeterInterLoc;
+			compSize = defaultSize;
 			break;
 		case resistance:
-			interfaceLocs=resistanceInterLoc;
+			interfaceLocs = resistanceInterLoc;
+			compSize = defaultSize;
 			break;
 		case capicititance:
-			interfaceLocs=capicititanceInterLoc;
+			interfaceLocs = capicititanceInterLoc;
+			compSize = defaultSize;
 			break;
 		case diode:
-			interfaceLocs=diodeInterLoc;
+			interfaceLocs = diodeInterLoc;
+			compSize = defaultSize;
 			break;
 		case amplifier:
-			interfaceLocs=amplifierInterLoc;
+			interfaceLocs = amplifierInterLoc;
+			compSize = amplifierSize;
 			break;
 		case voltageSource:
-			interfaceLocs=voltageSourceInterLoc;
+			interfaceLocs = voltageSourceInterLoc;
+			compSize = defaultSize;
 			break;
 		case  currentSource:
-			interfaceLocs=currentSourceInterLoc;
+			interfaceLocs = currentSourceInterLoc;
+			compSize = defaultSize;
 			break;
 		case groundConn:
-			interfaceLocs=groundConnInterLoc;
+			interfaceLocs = groundConnInterLoc;
+			compSize = groundConnSize;
 			break;
 		case switchComp:
-			interfaceLocs=switchMeterInterLoc;
+			interfaceLocs = switchMeterInterLoc;
+			compSize = defaultSize;
 			break;
 		case inductance:
-			interfaceLocs=inductanceInterLoc;
+			interfaceLocs = inductanceInterLoc;
+			compSize = defaultSize;
 			break;
 		}
 	}
@@ -174,7 +191,12 @@ public class CirComponent {
 		neighInterTable.put(localInterface, remoteInterface);
 	}
 	
-	//判断点击发生在哪个接口
+	/**
+	 * 判断点击发生在哪个接口
+	 * @param x: x Point
+	 * @param y: y Point
+	 * @return >0为点击到的接口编号，-1为点击到元件，但未点击到接口，<-1为未点击到元件
+	 */
 	public int pointInInterface(int x, int y) {
 		int delta = DrawArea.delta;	//点击误差限
 		Point interTmp;
@@ -192,7 +214,12 @@ public class CirComponent {
 				return i;
 			}
 		}
-		return -1;
+		if(x>=compLoc.getX() && y>=compLoc.getY() 
+				&& x-compLoc.getX()<=compSize.getX() 
+				&& y-compLoc.getY()<=compSize.getY()) {
+			return -1;
+		}
+		return -2;
 	}
 	
 	public int getRotateCount() {

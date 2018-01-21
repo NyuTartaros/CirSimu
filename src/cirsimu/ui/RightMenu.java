@@ -21,6 +21,7 @@ public class RightMenu extends JPopupMenu{
 	public RightMenu(DrawArea drawArea, CirComponent parentComp) {
 		this.drawArea = drawArea;
 		this.parentComp = parentComp;
+		drawArea.isDrawArea();
 		mCut = new JMenuItem("ºÙ«–");
 		mCut.setIcon(null);
 		mCopy = new JMenuItem("∏¥÷∆");
@@ -32,6 +33,7 @@ public class RightMenu extends JPopupMenu{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				parentComp.rotate();
+				drawArea.paint(drawArea.getGraphics());
 			}
 		});
 		mRotate.setIcon(null);

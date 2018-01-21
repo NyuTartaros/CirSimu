@@ -323,4 +323,10 @@ public class DrawArea extends JPanel {
 				, interB[0], interB[1]);
 	}
 	
+	//DEBUG
+	public void isDrawArea() {
+		System.out.println("It's drawArea.");
+		System.out.println("CompList.size()=" + cirComponentList.size());
+	}
+	
 }

@@ -19,6 +19,10 @@ public class CirComponentList {
 		return cirComponents.get(index);
 	}
 	
+	public int size() {
+		return cirComponents.size();
+	}
+	
 	public void setlink(Integer comp1, Integer interface1
 			, Integer comp2, Integer interface2){
 		CirComponent cirComponent1 = cirComponents.get(comp1);
@@ -41,6 +45,10 @@ public class CirComponentList {
 			if( inter > -1){
 				result[0] = i;
 				result[1] = inter;
+				return result;
+			}else if (inter == -1) {
+				result[0] = i;
+				result[1] = -1;
 				return result;
 			}
 		}
