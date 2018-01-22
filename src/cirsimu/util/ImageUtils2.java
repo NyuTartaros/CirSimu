@@ -1,10 +1,6 @@
 package cirsimu.util;  
   
 import java.awt.image.BufferedImage;  
-import java.io.File;  
-import java.io.IOException;  
-  
-import javax.imageio.ImageIO;  
   
 //图片旋转工具类  
 public class ImageUtils2 {  
