@@ -57,8 +57,8 @@ public class DrawArea extends JPanel {
 					case LINKING_A:
 						int[] tmpResultA = clickInComp(e.getX(), e.getY());
 						//DEBUG
-						System.out.println("DrawArea.click_LINKING_A: "
-								+ "x=" + e.getX() + ", " + "y=" + e.getY());
+//						System.out.println("DrawArea.click_LINKING_A: "
+//								+ "x=" + e.getX() + ", " + "y=" + e.getY());
 						if(tmpResultA == null){
 							JOptionPane.showMessageDialog(getParent()
 									, "未点击任何接口.");
@@ -67,10 +67,8 @@ public class DrawArea extends JPanel {
 						}
 						tmpInterfaceA = tmpResultA;
 						//DEBUG
-//						System.out.println("clickAt: " + tmpResultA[0]
-//								+ "," + tmpResultA[1]);
-						System.out.println("clickAt: " + tmpInterfaceA[0]
-								+ "," + tmpInterfaceA[1]);
+//						System.out.println("clickAt: " + tmpInterfaceA[0]
+//								+ "," + tmpInterfaceA[1]);
 						startLinking_B();
 						paint(getGraphics());
 						return;
@@ -90,12 +88,12 @@ public class DrawArea extends JPanel {
 						tmpInterfaceB = tmpResultB;
 						setlink(tmpInterfaceA, tmpInterfaceB);
 						//DEBUG
-						System.out.println("tmpInterfaceA: "
-								+ "comp=" + tmpInterfaceA[0] + ", "
-								+ "inter=" + tmpInterfaceA[1]);
-						System.out.println("tmpInterfaceB: "
-								+ "comp=" + tmpInterfaceB[0] + ", "
-								+ "inter=" + tmpInterfaceB[1]);
+//						System.out.println("tmpInterfaceA: "
+//								+ "comp=" + tmpInterfaceA[0] + ", "
+//								+ "inter=" + tmpInterfaceA[1]);
+//						System.out.println("tmpInterfaceB: "
+//								+ "comp=" + tmpInterfaceB[0] + ", "
+//								+ "inter=" + tmpInterfaceB[1]);
 						stopLinking();
 						paint(getGraphics());
 						return;
@@ -111,7 +109,7 @@ public class DrawArea extends JPanel {
 					stopLinking();
 					return;
 				}
-				//右键点击，弹出右键菜单
+				//右键点击，弹出右键菜单或反转连接
 				if(e.getButton()==MouseEvent.BUTTON3) {
 					switch (status) {
 					case WAITING:
@@ -123,6 +121,23 @@ public class DrawArea extends JPanel {
 						RightMenu rightMenu = new RightMenu((DrawArea)e.getComponent(), cirComponentList.get(compNo));
 						rightMenu.show(e.getComponent(), e.getX(), e.getY());
 						return;
+					case LINKING_A:
+						int[] tmpResult = clickInComp(e.getX(), e.getY());
+						//DEBUG
+						System.out.println("DrawArea.reverseLink: "
+								+ "x=" + e.getX() + ", " + "y=" + e.getY());
+						if(tmpResult == null){
+							JOptionPane.showMessageDialog(getParent()
+									, "未点击任何接口.");
+							stopLinking();
+							return;
+						}
+						if(!cirComponentList.get(tmpResult[0]).getNeighCompTable().containsKey(tmpResult[1])) {
+							JOptionPane.showMessageDialog(getParent(), "该接口无导线连接.");
+						}
+						reverseLink(tmpResult);
+						stopLinking();
+						paint(getGraphics());
 					default:
 						return;
 					}
@@ -193,7 +208,8 @@ public class DrawArea extends JPanel {
 				Integer bInter = neighInterTable.get(aInter);
 				Point aPoint = comp.getInterfaceLoc(aInter);
 				Point bPoint = cirComponents.get(bComp).getInterfaceLoc(bInter);
-				Point[] linkPath = getLinkPath(aPoint, bPoint);
+				boolean pointFlag = cirComponents.get(aComp).getPointFlag(aInter);
+				Point[] linkPath = getLinkPath(aPoint, bPoint, pointFlag);
 				for(int j=0; j<linkPath.length-1; j++){
 					Point prev = linkPath[j];
 					Point next = linkPath[j+1];
@@ -234,7 +250,7 @@ public class DrawArea extends JPanel {
 		g.drawRect(x-delta, y-delta, 2*delta, 2*delta);
 	}
 	
-	private Point[] getLinkPath(Point aPoint, Point bPoint){
+	private Point[] getLinkPath(Point aPoint, Point bPoint, boolean pointFlag){
 		Point a;
 		Point b;
 		if(aPoint.getX() == bPoint.getX() || aPoint.getY() == bPoint.getY()){
@@ -249,7 +265,11 @@ public class DrawArea extends JPanel {
 			b = aPoint;
 		}
 		Point c;
-		c = new Point(a.getX(), b.getY());
+		if(!pointFlag) {
+			c = new Point(a.getX(), b.getY());
+		}else {
+			c = new Point(b.getX(), a.getY());
+		}
 		Point[] result = {a, c, b};
 		return result;
 	}
@@ -321,6 +341,10 @@ public class DrawArea extends JPanel {
 	private void setlink(int[] interA, int[] interB){
 		cirComponentList.setlink(interA[0], interA[1]
 				, interB[0], interB[1]);
+	}
+	
+	private void reverseLink(int[] inter) {
+		cirComponentList.reverseLink(inter[0], inter[1]);
 	}
 	
 	//DEBUG

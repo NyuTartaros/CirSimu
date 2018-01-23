@@ -2,6 +2,8 @@ package cirsimu.entity;
 
 import java.util.HashMap;
 
+import javax.sound.midi.VoiceStatus;
+
 import cirsimu.ui.DrawArea;
 
 public class CirComponent {
@@ -15,9 +17,11 @@ public class CirComponent {
 	private int interfaceNum;
 	private int rotateCount = 0;
 	private HashMap<Integer,Integer> neighCompTable
-		= new HashMap<Integer,Integer>();	//邻接组件表
+			= new HashMap<Integer, Integer>();	//邻接组件表
 	private HashMap<Integer,Integer> neighInterTable
-		= new HashMap<Integer,Integer>();	//邻接接口表
+			= new HashMap<Integer, Integer>();	//邻接接口表
+	private HashMap<Integer, Boolean> pointFlagTable
+			= new HashMap<Integer, Boolean>();
 	
 	//元件尺寸
 	private static final Point defaultSize = new Point(120, 30);
@@ -186,9 +190,19 @@ public class CirComponent {
 		return interLoc;
 	}
 	
+	public boolean getPointFlag(int inter) {
+		return pointFlagTable.get(inter);
+	}
+	
 	public void setlink(int localInterface, int remoteComp, int remoteInterface){
 		neighCompTable.put(localInterface, remoteComp);
 		neighInterTable.put(localInterface, remoteInterface);
+		pointFlagTable.put(localInterface, false);
+	}
+	
+	public void reverseLink(int localInterface) {
+		boolean nowFlag = pointFlagTable.get(localInterface);
+		pointFlagTable.put(localInterface, !nowFlag);
 	}
 	
 	/**

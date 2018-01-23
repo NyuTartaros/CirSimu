@@ -140,18 +140,6 @@ public class MainWindow extends JFrame {
 		voltageSourceBtn.setToolTipText("\u7535\u538B\u6E90");
 		componentToolBar_1.add(voltageSourceBtn);
 		
-		groundConnBtn = new JButton("\u63A5\u5730");
-		groundConnBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		groundConnBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				drawArea.startEditing(CirComponent.groundConn);
-			}
-		});
-		
 		currentSourceBtn = new JButton("\u7535\u6D41\u6E90");
 		componentToolBar_1.add(currentSourceBtn);
 		currentSourceBtn.addMouseListener(new MouseAdapter() {
@@ -171,8 +159,6 @@ public class MainWindow extends JFrame {
 			}
 		});
 		switchBtn.setToolTipText("\u5F00\u5173");
-		groundConnBtn.setToolTipText("\u63A5\u5730");
-		componentToolBar_1.add(groundConnBtn);
 		
 		inductanceBtn = new JButton("\u7535\u611F");
 		inductanceBtn.addActionListener(new ActionListener() {
@@ -185,6 +171,22 @@ public class MainWindow extends JFrame {
 				drawArea.startEditing(CirComponent.inductance);
 			}
 		});
+		inductanceBtn.setToolTipText("\u7535\u611F");
+		componentToolBar_1.add(inductanceBtn);
+		
+		groundConnBtn = new JButton("\u63A5\u5730");
+		groundConnBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		groundConnBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				drawArea.startEditing(CirComponent.groundConn);
+			}
+		});
+		groundConnBtn.setToolTipText("\u63A5\u5730");
+		componentToolBar_1.add(groundConnBtn);
 		
 		wireBtn = new JButton("\u5BFC\u7EBF");
 		componentToolBar_1.add(wireBtn);
@@ -195,8 +197,6 @@ public class MainWindow extends JFrame {
 			}
 		});
 		wireBtn.setToolTipText("\u5BFC\u7EBF");
-		inductanceBtn.setToolTipText("\u7535\u611F");
-		componentToolBar_1.add(inductanceBtn);
 		
 		drawArea = new DrawArea();
 		getContentPane().add(drawArea, BorderLayout.CENTER);

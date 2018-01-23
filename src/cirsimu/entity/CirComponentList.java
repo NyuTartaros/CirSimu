@@ -31,6 +31,15 @@ public class CirComponentList {
 		cirComponent2.setlink(interface2, comp1, interface1);
 	}
 	
+	public void reverseLink(Integer comp1, Integer interface1) {
+		CirComponent cirComponent1 = cirComponents.get(comp1);
+		Integer comp2 = cirComponent1.getNeighCompTable().get(interface1);
+		Integer interface2 = cirComponent1.getNeighInterTable().get(interface1);
+		CirComponent cirComponent2 = cirComponents.get(comp2);
+		cirComponent1.reverseLink(interface1);
+		cirComponent2.reverseLink(interface2);
+	}
+	
 	public ArrayList<CirComponent> getArrayList(){
 		return cirComponents;
 	}
