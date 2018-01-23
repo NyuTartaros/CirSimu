@@ -118,7 +118,7 @@ public class DrawArea extends JPanel {
 						int[] compNoNinterNo = clickInComp(e.getX(), e.getY());
 						//DEBUG
 						System.out.println(compNoNinterNo.length);
-						System.out.println(""+compNoNinterNo[0]+compNoNinterNo[1]);
+						System.out.println(""+compNoNinterNo[0]+" "+compNoNinterNo[1]);
 						int compNo = compNoNinterNo[0];
 						RightMenu rightMenu = new RightMenu((DrawArea)e.getComponent(), cirComponentList.get(compNo));
 						rightMenu.show(e.getComponent(), e.getX(), e.getY());
