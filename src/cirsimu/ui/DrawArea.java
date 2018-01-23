@@ -1,7 +1,6 @@
 package cirsimu.ui;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,14 +8,12 @@ import java.util.HashMap;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 
 import cirsimu.entity.CirComponent;
 import cirsimu.entity.CirComponentList;
 import cirsimu.entity.Point;
 
 import java.awt.event.MouseMotionAdapter;
-import java.lang.reflect.Array;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 

@@ -2,8 +2,6 @@ package cirsimu.entity;
 
 import java.util.HashMap;
 
-import javax.sound.midi.VoiceStatus;
-
 import cirsimu.ui.DrawArea;
 
 public class CirComponent {
