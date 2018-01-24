@@ -13,6 +13,7 @@ import javax.swing.JToolBar;
 import java.awt.BorderLayout;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import java.awt.event.MouseAdapter;
@@ -50,12 +51,76 @@ public class MainWindow extends JFrame {
 	private JMenuItem menuItem_1;
 	
 	public MainWindow() {
+		super();
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("./icons/icon.png"));
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("\u7535\u8DEF\u7F16\u8F91\u4EFF\u771F");
-		setLocationRelativeTo(null);
+//		setLocationRelativeTo(null);
 		setSize(1000,800);
+		
+		menuBar = new JMenuBar();
+		getContentPane().add(menuBar, BorderLayout.NORTH);
+		
+		fileMenu = new JMenu("\u6587\u4EF6");
+		menuBar.add(fileMenu);
+		
+		menuItem = new JMenuItem("\u65B0\u5EFA\u5B9E\u9A8C");
+		menuItem.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				drawArea.newGraph();
+			}
+		});
+		fileMenu.add(menuItem);
+		
+		openMenuItem = new JMenuItem("\u6253\u5F00\u5B9E\u9A8C");
+		fileMenu.add(openMenuItem);
+		
+		saveMenuItem = new JMenuItem("\u5BFC\u51FACir");
+		saveMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					saveComponentListToCsv();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		menuItem_1 = new JMenuItem("\u4FDD\u5B58\u5B9E\u9A8C");
+		menuItem_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					saveComponentListToCsv();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		fileMenu.add(menuItem_1);
+		fileMenu.add(saveMenuItem);
+		
+		editMenu = new JMenu("\u7F16\u8F91");
+		menuBar.add(editMenu);
+		
+		reportMenuItem = new JMenuItem("\u751F\u6210\u5B9E\u9A8C\u62A5\u544A");
+		reportMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ReportFrame reportFrame = new ReportFrame();
+			}
+		});
+		
+		JMenuItem mntmpspice = new JMenuItem("\u8C03\u7528PSpice\u4EFF\u771F");
+		editMenu.add(mntmpspice);
+		editMenu.add(reportMenuItem);
+		
+		menuBar.setVisible(true);
 		
 		getContentPane().add(componentBtnBar, BorderLayout.WEST);
 		
@@ -201,67 +266,14 @@ public class MainWindow extends JFrame {
 		drawArea = new DrawArea();
 		getContentPane().add(drawArea, BorderLayout.CENTER);
 		
-		menuBar = new JMenuBar();
+		JDialog loginDialog = new JDialog(this,"\u767B\u9646",true);
+		loginDialog.setSize(300, 250);
+		loginDialog.setResizable(false);
+		loginDialog.setLocationRelativeTo(this);
 		
-		fileMenu = new JMenu("\u6587\u4EF6");
-		menuBar.add(fileMenu);
-		
-		menuItem = new JMenuItem("\u65B0\u5EFA\u5B9E\u9A8C");
-		menuItem.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				drawArea.newGraph();
-			}
-		});
-		fileMenu.add(menuItem);
-		
-		openMenuItem = new JMenuItem("\u6253\u5F00\u5B9E\u9A8C");
-		fileMenu.add(openMenuItem);
-		
-		saveMenuItem = new JMenuItem("\u5BFC\u51FACir");
-		saveMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					saveComponentListToCsv();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		
-		menuItem_1 = new JMenuItem("\u4FDD\u5B58\u5B9E\u9A8C");
-		menuItem_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				try {
-					saveComponentListToCsv();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		fileMenu.add(menuItem_1);
-		fileMenu.add(saveMenuItem);
-		
-		editMenu = new JMenu("\u7F16\u8F91");
-		menuBar.add(editMenu);
-		
-		reportMenuItem = new JMenuItem("\u751F\u6210\u5B9E\u9A8C\u62A5\u544A");
-		reportMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ReportFrame reportFrame = new ReportFrame();
-			}
-		});
-		
-		JMenuItem mntmpspice = new JMenuItem("\u8C03\u7528PSpice\u4EFF\u771F");
-		editMenu.add(mntmpspice);
-		editMenu.add(reportMenuItem);
-		
-		menuBar.setVisible(true);
-		this.setJMenuBar(menuBar);
-		
+		LoginPanel loginPanel = new LoginPanel(loginDialog);
+		loginDialog.setContentPane(loginPanel);
+		loginDialog.setVisible(true);
 	}
 	
 	public void saveComponentListToCsv() throws IOException{
