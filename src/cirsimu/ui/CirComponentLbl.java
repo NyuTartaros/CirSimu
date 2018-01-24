@@ -33,52 +33,16 @@ public class CirComponentLbl extends JLabel {
 		this.cirComponent = cirComponent;
 		switch(cirComponent.getRotateCount()) {
 		case 0:
-			try {
-				BufferedImage iconImage;
-				iconImage = ImageIO.read(new File("./icons/"+cirComponent.getType()+".png"));
-				ImageIcon icon = new ImageIcon(ImageUtil.imageToBytes(iconImage, "jpg"));
-				setIcon(icon);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			setIcon(new ImageIcon("./icons/"+cirComponent.getType()+".png"));
 			break;
 		case 1:
-			try {
-				BufferedImage iconImage;
-				iconImage = ImageIO.read(new File("./icons/"+cirComponent.getType()+".png"));
-				iconImage = ImageUtils2.rotateClockwise90(iconImage);
-				ImageIcon icon = new ImageIcon(ImageUtil.imageToBytes(iconImage, "jpg"));
-				setIcon(icon);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			setIcon(new ImageIcon("./icons/"+cirComponent.getType()+"1"+".png"));
 			break;
 		case 2:
-			try {
-				BufferedImage iconImage;
-				iconImage = ImageIO.read(new File("./icons/"+cirComponent.getType()+".png"));
-				iconImage = ImageUtils2.rotate180(iconImage);
-				ImageIcon icon = new ImageIcon(ImageUtil.imageToBytes(iconImage, "jpg"));
-				setIcon(icon);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			setIcon(new ImageIcon("./icons/"+cirComponent.getType()+"2"+".png"));
 			break;
 		case 3:
-			try {
-				BufferedImage iconImage;
-				iconImage = ImageIO.read(new File("./icons/"+cirComponent.getType()+".png"));
-				iconImage = ImageUtils2.rotate180(iconImage);
-				iconImage = ImageUtils2.rotateClockwise90(iconImage);
-				ImageIcon icon = new ImageIcon(ImageUtil.imageToBytes(iconImage, "jpg"));
-				setIcon(icon);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			setIcon(new ImageIcon("./icons/"+cirComponent.getType()+"3"+".png"));
 			break;
 		}
 		int width = getIcon().getIconWidth();
