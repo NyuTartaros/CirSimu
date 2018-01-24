@@ -1,16 +1,9 @@
 package cirsimu.ui;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import cirsimu.entity.CirComponent;
-import cirsimu.util.ImageUtil;
-import cirsimu.util.ImageUtils2;
 
 public class CirComponentLbl extends JLabel {
 
