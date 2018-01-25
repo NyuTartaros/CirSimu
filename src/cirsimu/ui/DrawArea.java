@@ -32,8 +32,6 @@ public class DrawArea extends JPanel {
 	private static final int LINKING_B = 3;
 	public static final int delta = 5;	//接口点击误差限
 	
-	//TODO 调整元件素材，所有元件图片尺寸一致
-	//TODO 给左侧按钮添加图标
 	//TODO 实现元件右键菜单
 	//TODO 实现元件拖动功能
 	
