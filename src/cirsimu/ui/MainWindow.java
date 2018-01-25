@@ -85,7 +85,6 @@ public class MainWindow extends JFrame {
 				try {
 					saveComponentListToCsv();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -98,7 +97,6 @@ public class MainWindow extends JFrame {
 				try {
 					saveComponentListToCsv();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
