@@ -99,6 +99,7 @@ public class ReportFrame extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(74, 190+31, 500, 42);
+		scrollPane.setBorder(null);
 		getContentPane().add(scrollPane);
 		
 		motivation = new JTextPane();
@@ -111,6 +112,7 @@ public class ReportFrame extends JFrame {
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(74, 242+31
 				, 500, 42);
+//		scrollPane_1.setBorder(null);
 		getContentPane().add(scrollPane_1);
 		
 		environment = new JTextPane();
@@ -119,6 +121,7 @@ public class ReportFrame extends JFrame {
 		JScrollPane scrollPane_2 = new JScrollPane();
 		scrollPane_2.setBounds(74, 294+31
 				, 500, 3*lineHeight);
+//		scrollPane_2.setBorder(null);
 		getContentPane().add(scrollPane_2);
 		
 		content = new JTextPane();
@@ -127,6 +130,7 @@ public class ReportFrame extends JFrame {
 		JScrollPane scrollPane_3 = new JScrollPane();
 		scrollPane_3.setBounds(74, scrollPane_2.getY()+scrollPane_2.getHeight()+10
 				, 500, 126);
+//		scrollPane_3.setBorder(null);
 		getContentPane().add(scrollPane_3);
 		
 		procedure = new JTextPane();
@@ -135,6 +139,7 @@ public class ReportFrame extends JFrame {
 		JScrollPane scrollPane_4 = new JScrollPane();
 		scrollPane_4.setBounds(74, scrollPane_3.getY()+scrollPane_3.getHeight()+10
 				, 500, 126);
+//		scrollPane_4.setBorder(null);
 		getContentPane().add(scrollPane_4);
 		
 		result = new JTextPane();
@@ -167,7 +172,7 @@ public class ReportFrame extends JFrame {
 						, procedure.getText(), result.getText());
 			}
 		});
-		button.setBounds(246, 670, 93, 23);
+		button.setBounds(171, 670, 93, 23);
 		getContentPane().add(button);
 		
 		title = new JTextField();
@@ -178,6 +183,10 @@ public class ReportFrame extends JFrame {
 		JLabel lblNewLabel_3 = new JLabel("\u9898\u76EE");
 		lblNewLabel_3.setBounds(10, 10, 54, 15);
 		getContentPane().add(lblNewLabel_3);
+		
+		JButton button_1 = new JButton("\u63D0\u4EA4\u670D\u52A1\u5668");
+		button_1.setBounds(309, 670, 93, 23);
+		getContentPane().add(button_1);
 	}
 	
 	public void generateReport(String title, String experimentName
