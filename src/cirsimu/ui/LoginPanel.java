@@ -1,6 +1,5 @@
 package cirsimu.ui;
 
-import java.awt.Toolkit;
 import javax.swing.JTextField;
 
 import javax.swing.JLabel;
@@ -10,6 +9,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -33,15 +34,15 @@ public class LoginPanel extends JPanel {
 		add(passwordField);
 		passwordField.setColumns(10);
 		
-		JLabel label = new JLabel("\u7528\u6237\u540D");
+		JLabel label = new JLabel("ÓÃ»§Ãû");
 		label.setBounds(66, 49, 36, 15);
 		add(label);
 		
-		JLabel label_1 = new JLabel("\u5BC6\u7801");
+		JLabel label_1 = new JLabel("ÃÜÂë");
 		label_1.setBounds(78, 95, 24, 15);
 		add(label_1);
 		
-		JButton loginBtn = new JButton("\u767B\u9646");
+		JButton loginBtn = new JButton("µÇÂ½");
 		loginBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -57,8 +58,15 @@ public class LoginPanel extends JPanel {
 		loginBtn.setBounds(66, 156, 57, 23);
 		add(loginBtn);
 		
-		JButton button = new JButton("\u6CE8\u518C");
+		JButton button = new JButton("×¢²á");
 		button.setBounds(169, 156, 57, 23);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RegisterPanel registerPanel=new RegisterPanel();
+				registerPanel.setVisible(true);	
+				//registerPanel.setAlwaysOnTop(true);
+			}
+		});
 		add(button);
 	}
 	
