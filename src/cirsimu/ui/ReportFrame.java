@@ -153,11 +153,11 @@ public class ReportFrame extends JFrame {
 		getContentPane().add(label_5);
 		
 		JLabel label_6 = new JLabel("\u5B9E\u9A8C\u6B65\u9AA4");
-		label_6.setBounds(10, 398, 54, 15);
+		label_6.setBounds(10, 440, 54, 15);
 		getContentPane().add(label_6);
 		
 		JLabel label_7 = new JLabel("\u5B9E\u9A8C\u7ED3\u679C");
-		label_7.setBounds(10, 534, 54, 15);
+		label_7.setBounds(10, 555, 54, 15);
 		getContentPane().add(label_7);
 		
 		JButton button = new JButton("\u751F\u6210");
