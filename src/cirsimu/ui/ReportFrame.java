@@ -119,7 +119,7 @@ public class ReportFrame extends JFrame {
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
 		scrollPane_2.setBounds(74, 294+31
-				, 500, 3*lineHeight);
+				, 500, 5*lineHeight);
 //		scrollPane_2.setBorder(null);
 		getContentPane().add(scrollPane_2);
 		
@@ -128,7 +128,7 @@ public class ReportFrame extends JFrame {
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
 		scrollPane_3.setBounds(74, scrollPane_2.getY()+scrollPane_2.getHeight()+10
-				, 500, 126);
+				, 500, 5*lineHeight);
 //		scrollPane_3.setBorder(null);
 		getContentPane().add(scrollPane_3);
 		
@@ -137,7 +137,7 @@ public class ReportFrame extends JFrame {
 		
 		JScrollPane scrollPane_4 = new JScrollPane();
 		scrollPane_4.setBounds(74, scrollPane_3.getY()+scrollPane_3.getHeight()+10
-				, 500, 126);
+				, 500, 5*lineHeight);
 //		scrollPane_4.setBorder(null);
 		getContentPane().add(scrollPane_4);
 		
