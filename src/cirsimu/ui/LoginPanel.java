@@ -34,8 +34,8 @@ public class LoginPanel extends JPanel {
 		add(passwordField);
 		passwordField.setColumns(10);
 		
-		JLabel label = new JLabel("”√ªß√˚");
-		label.setBounds(66, 49, 36, 15);
+		JLabel label = new JLabel("\u5B66\u53F7(\u5DE5\u53F7)");
+		label.setBounds(30, 49, 72, 15);
 		add(label);
 		
 		JLabel label_1 = new JLabel("√‹¬Î");
