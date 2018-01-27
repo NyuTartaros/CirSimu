@@ -99,7 +99,6 @@ public class ReportFrame extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(74, 190+31, 500, 42);
-		scrollPane.setBorder(null);
 		getContentPane().add(scrollPane);
 		
 		motivation = new JTextPane();

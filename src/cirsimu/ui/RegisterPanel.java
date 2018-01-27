@@ -25,7 +25,6 @@ public class RegisterPanel extends JFrame {
 	private JLabel stuName;
 	private JLabel passwd;
 	private JLabel passwddouble;
-	private JLabel type;
 	private JLabel email;
 	private JTextField idType;
 	private JTextField nameType;
@@ -78,14 +77,9 @@ public class RegisterPanel extends JFrame {
 		passwddouble.setBounds(67, 184, 54, 15);
 		contentPane.add(passwddouble);
 		
-		type = new JLabel("类 型");
-		type.setHorizontalAlignment(SwingConstants.CENTER);
-		type.setBounds(67, 227, 54, 15);
-		contentPane.add(type);
-		
 		email = new JLabel("邮 箱");
 		email.setHorizontalAlignment(SwingConstants.CENTER);
-		email.setBounds(67, 267, 54, 15);
+		email.setBounds(67, 229, 54, 15);
 		contentPane.add(email);
 		
 		idType = new JTextField();
@@ -109,18 +103,9 @@ public class RegisterPanel extends JFrame {
 		sureType.setColumns(10);
 		
 		emailType = new JTextField();
-		emailType.setBounds(149, 264, 184, 21);
+		emailType.setBounds(149, 226, 184, 21);
 		contentPane.add(emailType);
 		emailType.setColumns(10);
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("学生");
-		rdbtnNewRadioButton.setSelected(true);
-		rdbtnNewRadioButton.setBounds(166, 223, 65, 23);
-		contentPane.add(rdbtnNewRadioButton);
-		
-		JRadioButton radioButton = new JRadioButton("教师");
-		radioButton.setBounds(255, 223, 65, 23);
-		contentPane.add(radioButton);
 		
 		idPs=new JLabel("* (除去空格4-10位)");
 		idPs.setBounds(350, 55, 184, 21);
@@ -139,11 +124,11 @@ public class RegisterPanel extends JFrame {
 		contentPane.add(passsurePs);
 
 		emailPs=new JLabel("* (请正确输入邮箱)");
-		emailPs.setBounds(350, 264, 184, 21);
+		emailPs.setBounds(350, 226, 184, 21);
 		contentPane.add(emailPs);
 
 		JButton button = new JButton("注册");
-		button.setBounds(192, 311, 93, 23);
+		button.setBounds(191, 293, 93, 23);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
