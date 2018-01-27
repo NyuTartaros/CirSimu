@@ -93,11 +93,11 @@ public class MainWindow extends JFrame {
 		});
 		
 		menuItem_1 = new JMenuItem("\u4FDD\u5B58\u5B9E\u9A8C");
-		menuItem_1.addMouseListener(new MouseAdapter() {
+		menuItem_1.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {
 				try {
-					saveComponentListToCsv();
+					saveComponentListToGar();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -280,6 +280,18 @@ public class MainWindow extends JFrame {
 		LoginPanel loginPanel = new LoginPanel(loginDialog);
 		loginDialog.setContentPane(loginPanel);
 		loginDialog.setVisible(true);
+	}
+	
+	public void saveComponentListToGar() throws IOException{
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("±£¥Ê µ—È");
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		int result = fileChooser.showSaveDialog(getContentPane());
+		if(result == JFileChooser.APPROVE_OPTION){
+			File file = fileChooser.getSelectedFile();
+			FileHelper.saveComponentListToCsv(file
+					, drawArea.getComponentList());
+		}
 	}
 	
 	public void saveComponentListToCsv() throws IOException{
