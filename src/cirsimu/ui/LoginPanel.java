@@ -71,7 +71,7 @@ public class LoginPanel extends JPanel {
 	}
 	
 	public boolean login(String username, String password){
-		if(username.equals("admin") && password.equals("admin")){
+		if(username.equals("0001") && password.equals("0001")){
 			return true;
 		}else{
 			return false;
