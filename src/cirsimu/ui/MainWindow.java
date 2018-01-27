@@ -270,7 +270,7 @@ public class MainWindow extends JFrame {
 		loginDialog.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-//				System.exit(0);
+				System.exit(0);
 			}
 		});
 		loginDialog.setSize(300, 250);
