@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 
 public class RegisterPanel extends JFrame {
 
@@ -37,7 +38,10 @@ public class RegisterPanel extends JFrame {
 	private JLabel passsurePs;
 	private JLabel emailPs;
 	
-	public RegisterPanel() {
+	public RegisterPanel(JDialog loginDialog) {
+		loginDialog.setEnabled(false);
+		loginDialog.setFocusable(true);
+		setAlwaysOnTop(true);
 		setTitle("\u7528\u6237\u6CE8\u518C");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 688, 396);
@@ -143,6 +147,8 @@ public class RegisterPanel extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				loginDialog.setVisible(true);
+				loginDialog.setEnabled(true);
 			}
 		});
 		contentPane.add(button);

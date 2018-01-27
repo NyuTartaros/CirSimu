@@ -26,16 +26,29 @@ public class CirComponentLbl extends JLabel {
 		this.cirComponent = cirComponent;
 		switch(cirComponent.getRotateCount()) {
 		case 0:
+			//DEBUG
+//			System.out.println("rotate 0.");
 			setIcon(new ImageIcon("./icons/"+cirComponent.getType()+".png"));
 			break;
 		case 1:
-			setIcon(new ImageIcon("./icons/"+cirComponent.getType()+"1"+".png"));
+			//DEBUG
+//			System.out.println("rotate 1.");
+			setIcon(new ImageIcon("./icons/"+cirComponent.getType()+"_1"+".png"));
+//			setIcon(new ImageIcon("./icons/"+cirComponent.groundConn+".png"));
 			break;
 		case 2:
-			setIcon(new ImageIcon("./icons/"+cirComponent.getType()+"2"+".png"));
+			//DEBUG
+//			System.out.println("rotate 2.");
+			setIcon(new ImageIcon("./icons/"+cirComponent.getType()+"_2"+".png"));
+//			setIcon(new ImageIcon("./icons/"+cirComponent.groundConn+".png"));
 			break;
 		case 3:
-			setIcon(new ImageIcon("./icons/"+cirComponent.getType()+"3"+".png"));
+			//DEBUG
+//			System.out.println("rotate 3.");
+			setIcon(new ImageIcon("./icons/"+cirComponent.getType()+"_3"+".png"));
+//			setIcon(new ImageIcon("./icons/"+cirComponent.groundConn+".png"));
+			break;
+		default:
 			break;
 		}
 		int width = getIcon().getIconWidth();

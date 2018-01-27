@@ -19,6 +19,8 @@ public class RightMenu extends JPopupMenu{
 	private CirComponent parentComp;
 	
 	public RightMenu(DrawArea drawArea, CirComponent parentComp) {
+		//DEBUG
+//		System.out.println("At RightMenu.init<>");
 		this.drawArea = drawArea;
 		this.parentComp = parentComp;
 		drawArea.isDrawArea();
@@ -32,7 +34,8 @@ public class RightMenu extends JPopupMenu{
 		mRotate.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				//TODO DEBUG
+				//DEBUG
+//				System.out.println("At RightMenu.mRotate Clicked.");
 				parentComp.rotate();
 				drawArea.paint(drawArea.getGraphics());
 			}

@@ -57,14 +57,14 @@ public class LoginPanel extends JPanel {
 		});
 		loginBtn.setBounds(66, 156, 57, 23);
 		add(loginBtn);
-		
 		JButton button = new JButton("зЂВс");
 		button.setBounds(169, 156, 57, 23);
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				RegisterPanel registerPanel=new RegisterPanel();
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				RegisterPanel registerPanel=new RegisterPanel(loginDialog);
 				registerPanel.setVisible(true);	
-				//registerPanel.setAlwaysOnTop(true);
+				loginDialog.setVisible(false);
 			}
 		});
 		add(button);

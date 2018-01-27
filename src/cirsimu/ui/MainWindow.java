@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class MainWindow extends JFrame {
 	
@@ -265,6 +267,12 @@ public class MainWindow extends JFrame {
 		getContentPane().add(drawArea, BorderLayout.CENTER);
 		
 		JDialog loginDialog = new JDialog(this,"\u767B\u9646",true);
+		loginDialog.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+//				System.exit(0);
+			}
+		});
 		loginDialog.setSize(300, 250);
 		loginDialog.setResizable(false);
 		loginDialog.setLocationRelativeTo(this);

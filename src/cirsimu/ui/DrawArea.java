@@ -19,6 +19,7 @@ import java.awt.event.MouseAdapter;
 
 public class DrawArea extends JPanel {
 	private CirComponentList cirComponentList = new CirComponentList();
+	private ArrayList<CirComponentLbl> compLblList = new ArrayList<CirComponentLbl>();
 	private CirComponentLbl tmpLbl = new CirComponentLbl();	
 			//拖动编辑时用于预览的临时组件label
 	private int[] tmpInterfaceA;	//连线时记录的临时接口
@@ -104,14 +105,30 @@ public class DrawArea extends JPanel {
 					stopLinking();
 					return;
 				}
+				//按住Ctrl右键点击：旋转元件
+				if(e.isControlDown() && e.getButton() == MouseEvent.BUTTON3) {
+					int[] compNoNinterNo = clickInComp(e.getX(), e.getY());
+					if (compNoNinterNo == null) {
+						//DEBUG
+						System.out.println("没有元件被选中.");
+						return;
+					}
+					int compNo = compNoNinterNo[0];
+					cirComponentList.get(compNo).rotate();
+					paint(getGraphics());
+					paint(getGraphics());
+				}
 				//右键点击，弹出右键菜单或反转连接
-				if(e.getButton()==MouseEvent.BUTTON3) {
+				if(!e.isControlDown() && e.getButton()==MouseEvent.BUTTON3) {
 					switch (status) {
 					case WAITING:
 						int[] compNoNinterNo = clickInComp(e.getX(), e.getY());
+						if (compNoNinterNo == null) {
+							return;
+						}
 						//DEBUG
-						System.out.println(compNoNinterNo.length);
-						System.out.println(""+compNoNinterNo[0]+" "+compNoNinterNo[1]);
+//						System.out.println(compNoNinterNo.length);
+//						System.out.println(""+compNoNinterNo[0]+" "+compNoNinterNo[1]);
 						int compNo = compNoNinterNo[0];
 						RightMenu rightMenu = new RightMenu((DrawArea)e.getComponent(), cirComponentList.get(compNo));
 						rightMenu.show(e.getComponent(), e.getX(), e.getY());
@@ -119,8 +136,8 @@ public class DrawArea extends JPanel {
 					case LINKING_A:
 						int[] tmpResult = clickInComp(e.getX(), e.getY());
 						//DEBUG
-						System.out.println("DrawArea.reverseLink: "
-								+ "x=" + e.getX() + ", " + "y=" + e.getY());
+//						System.out.println("DrawArea.reverseLink: "
+//								+ "x=" + e.getX() + ", " + "y=" + e.getY());
 						if(tmpResult == null){
 							JOptionPane.showMessageDialog(getParent()
 									, "未点击任何接口.");
@@ -166,7 +183,17 @@ public class DrawArea extends JPanel {
 		ArrayList<CirComponent> cirComponents 
 				= cirComponentList.getArrayList();
 		for(int i=0; i<cirComponents.size(); i++){
-			add(new CirComponentLbl(cirComponents.get(i)));
+			//DEBUG
+//			System.out.println("At DrawArea.point(): cirComponents.size=" + cirComponents.size() 
+//						+ ", i=" + i);
+			if (compLblList.size() < i+1) {
+				compLblList.add(new CirComponentLbl(cirComponents.get(i)));
+				add(compLblList.get(i));
+			}else {
+				remove(compLblList.get(i));
+				compLblList.set(i, new CirComponentLbl(cirComponents.get(i)));
+				add(compLblList.get(i));
+			}
 		}
 		drawLink(g);
 		if(isLinking_A()){
@@ -344,8 +371,8 @@ public class DrawArea extends JPanel {
 	
 	//DEBUG
 	public void isDrawArea() {
-		System.out.println("It's drawArea.");
-		System.out.println("CompList.size()=" + cirComponentList.size());
+//		System.out.println("It's drawArea.");
+//		System.out.println("CompList.size()=" + cirComponentList.size());
 	}
 	
 }

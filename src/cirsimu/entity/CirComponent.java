@@ -243,10 +243,12 @@ public class CirComponent {
 	public void rotate(){
 		rotateCount++;
 		rotateCount = rotateCount%4;
-		for(int i=0; i<interfaceLocs.length; i++){
-			
-		}
-		
+		//DEBUG
+//		System.out.println("At CirComponent.rotate(): rotateCount=" + rotateCount);
+//		for(int i=0; i<interfaceLocs.length; i++){
+//			
+//		}
+//		
 	}
 
 }
