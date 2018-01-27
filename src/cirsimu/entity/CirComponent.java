@@ -27,28 +27,30 @@ public class CirComponent {
 	private static final Point groundConnSize = new Point(50, 50);
 	
 	//元件接口位置
-	private static final Point[] ampereMeterInterLoc = 
-		{new Point(0, 15), new Point(119, 15)};
-	private static final Point[] voltmeterInterLoc = 
+	private static final Point[] defaultInterloc = 
 		{new Point(0, 15), new Point(119, 15)};
 	private static final Point[] amplifierInterLoc = 
 		{new Point(0, 14), new Point(0, 35), new Point(119, 24)};
-	private static final Point[] capicititanceInterLoc = 
-		{new Point(0, 15), new Point(119, 15)};
-	private static final Point[] currentSourceInterLoc = 
-		{new Point(0, 15), new Point(119, 15)};
-	private static final Point[] diodeInterLoc = 
-		{new Point(0, 15), new Point(119, 15)};
-	private static final Point[] inductanceInterLoc = 
-		{new Point(0, 15), new Point(119, 15)};
-	private static final Point[] resistanceInterLoc = 
-		{new Point(0, 15), new Point(119, 15)};
-	private static final Point[] switchMeterInterLoc = 
-		{new Point(0, 15), new Point(119, 15)};
-	private static final Point[] voltageSourceInterLoc = 
-		{new Point(0, 15), new Point(119, 15)};
 	private static final Point[] groundConnInterLoc = 
 		{new Point(25, 0)};
+	private static final Point[] defaultInterloc_1 = 
+		{new Point(15, 0), new Point(15, 119)};
+	private static final Point[] amplifierInterLoc_1 = 
+		{new Point(14, 0), new Point(35, 0), new Point(24, 119)};
+	private static final Point[] groundConnInterLoc_1 = 
+		{new Point(50, 25)};
+	private static final Point[] defaultInterloc_2 = 
+		{new Point(0, 15), new Point(119, 15)};
+	private static final Point[] amplifierInterLoc_2 = 
+		{new Point(119, 49-14), new Point(119, 49-35), new Point(0, 24)};
+	private static final Point[] groundConnInterLoc_2 = 
+		{new Point(25, 50)};
+	private static final Point[] defaultInterloc_3 = 
+		{new Point(15, 0), new Point(15, 119)};
+	private static final Point[] amplifierInterLoc_3 = 
+		{new Point(49-14, 119), new Point(49-35, 119), new Point(24, 0)};
+	private static final Point[] groundConnInterLoc_3 = 
+		{new Point(0, 25)};
 	
 	//元件名
 	public static final String voltmeter = "voltmeter";
@@ -78,48 +80,16 @@ public class CirComponent {
 			this.interfaceNum = 2;
 		}
 		switch(type){
-		case amperemeter:
-			interfaceLocs = ampereMeterInterLoc;
-			compSize = defaultSize;
-			break;
-		case voltmeter:
-			interfaceLocs = voltmeterInterLoc;
-			compSize = defaultSize;
-			break;
-		case resistance:
-			interfaceLocs = resistanceInterLoc;
-			compSize = defaultSize;
-			break;
-		case capicititance:
-			interfaceLocs = capicititanceInterLoc;
-			compSize = defaultSize;
-			break;
-		case diode:
-			interfaceLocs = diodeInterLoc;
-			compSize = defaultSize;
-			break;
 		case amplifier:
 			interfaceLocs = amplifierInterLoc;
 			compSize = amplifierSize;
-			break;
-		case voltageSource:
-			interfaceLocs = voltageSourceInterLoc;
-			compSize = defaultSize;
-			break;
-		case  currentSource:
-			interfaceLocs = currentSourceInterLoc;
-			compSize = defaultSize;
 			break;
 		case groundConn:
 			interfaceLocs = groundConnInterLoc;
 			compSize = groundConnSize;
 			break;
-		case switchComp:
-			interfaceLocs = switchMeterInterLoc;
-			compSize = defaultSize;
-			break;
-		case inductance:
-			interfaceLocs = inductanceInterLoc;
+		default:
+			interfaceLocs = defaultInterloc;
 			compSize = defaultSize;
 			break;
 		}
@@ -245,10 +215,62 @@ public class CirComponent {
 		rotateCount = rotateCount%4;
 		//DEBUG
 //		System.out.println("At CirComponent.rotate(): rotateCount=" + rotateCount);
-//		for(int i=0; i<interfaceLocs.length; i++){
-//			
-//		}
-//		
+		compSize = new Point(compSize.getY(), compSize.getX());
+		switch(rotateCount) {
+		case 0:
+			switch (type) {
+			case amplifier:
+				interfaceLocs = amplifierInterLoc;
+				break;
+			case groundConn:
+				interfaceLocs = groundConnInterLoc;
+				break;
+			default:
+				interfaceLocs = defaultInterloc;
+				break;
+			}
+			break;
+		case 1:
+			switch (type) {
+			case amplifier:
+				interfaceLocs = amplifierInterLoc_1;
+				break;
+			case groundConn:
+				interfaceLocs = groundConnInterLoc_1;
+				break;
+			default:
+				interfaceLocs = defaultInterloc_1;
+				break;
+			}
+			break;
+		case 2:
+			switch (type) {
+			case amplifier:
+				interfaceLocs = amplifierInterLoc_2;
+				break;
+			case groundConn:
+				interfaceLocs = groundConnInterLoc_2;
+				break;
+			default:
+				interfaceLocs = defaultInterloc_2;
+				break;
+			}
+			break;
+		case 3:
+			switch (type) {
+			case amplifier:
+				interfaceLocs = amplifierInterLoc_3;
+				break;
+			case groundConn:
+				interfaceLocs = groundConnInterLoc_3;
+				break;
+			default:
+				interfaceLocs = defaultInterloc_3;
+				break;
+			}
+			break;
+		}
+		
 	}
 
 }
