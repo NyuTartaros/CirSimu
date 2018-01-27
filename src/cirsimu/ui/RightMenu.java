@@ -28,7 +28,7 @@ public class RightMenu extends JPopupMenu{
 		mCut.setIcon(null);
 		mCopy = new JMenuItem("¸´ÖÆ");
 		mCopy.setIcon(null);
-		mPaste = new JMenuItem("¸´ÖÆ");
+		mPaste = new JMenuItem("\u7C98\u8D34");
 		mPaste.setIcon(null);
 		mRotate = new JMenuItem("Ðý×ª");
 		mRotate.addMouseListener(new MouseAdapter() {
