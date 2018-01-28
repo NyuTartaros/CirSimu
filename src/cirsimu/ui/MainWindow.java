@@ -50,7 +50,43 @@ public class MainWindow extends JFrame {
 	private DrawArea drawArea;
 	private JMenuItem reportMenuItem;
 	private JMenuItem menuItem;
-	private JMenuItem menuItem_1;
+	private JMenuItem saveItem;
+	private JMenu zujianMenu;
+	private JMenuItem dianyaItem;
+	private JMenuItem dianliuItem;
+	private JMenuItem dianzuItem;
+	private JMenuItem dianrongItem;
+	private JMenuItem erjiguanItem;
+	private JMenuItem fangdaqiItem;
+	private JMenuItem dianyayuanItem;
+	private JMenuItem dianliuyuanItem;
+	private JMenuItem jiediItem;
+	private JMenuItem kaiguanItem;
+	private JMenuItem dianganItem;
+	private JMenuItem daoxianItem;
+	private JMenuItem exitItem;
+	private JMenuItem diaoyongItem;
+	private JMenuItem chakanItem;
+	private JMenu fangzhenMenu;
+	private JMenu viewMenu;
+	private JMenuItem dianlutumiaoshuItem;
+	private JMenuItem dianlutudaimaItem;
+	private JMenuItem daimabianjiItem;
+	private JMenu shiyanMenu;
+	private JMenuItem moveItem;
+	private JMenuItem tijiaoresultItem;
+	private JMenuItem copyItem;
+	private JMenuItem pasteItem;
+	private JMenuItem deleteItem;
+	private JMenuItem rotateItem;
+	private JMenuItem propertyItem;
+	private JMenu setMenu;
+	private JMenuItem serverSetitem;
+	private JMenu helpMenu;
+	private JMenuItem aboutItem;
+	private JMenuItem softwareItem;
+	private JMenuItem checkupdateItem;
+	private JMenuItem pathSetItem;
 	
 	public MainWindow() {
 		super();
@@ -59,7 +95,7 @@ public class MainWindow extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("./icons/icon.png"));
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("\u7535\u8DEF\u7F16\u8F91\u4EFF\u771F");
+		setTitle("\u7535\u5DE5\u7535\u5B50\u5B9E\u9A8C\u5BA4\u6559\u5B66\u7CFB\u7EDF  \u7248\u6743\u6240\u6709\uFF1A\u5434\u76FC");
 //		setLocationRelativeTo(null);
 		setSize(1000,800);
 		
@@ -92,8 +128,8 @@ public class MainWindow extends JFrame {
 			}
 		});
 		
-		menuItem_1 = new JMenuItem("\u4FDD\u5B58\u5B9E\u9A8C");
-		menuItem_1.addActionListener(new ActionListener() {
+		saveItem = new JMenuItem("\u4FDD\u5B58\u5B9E\u9A8C");
+		saveItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -103,22 +139,127 @@ public class MainWindow extends JFrame {
 				}
 			}
 		});
-		fileMenu.add(menuItem_1);
+		fileMenu.add(saveItem);
 		fileMenu.add(saveMenuItem);
+		
+		exitItem = new JMenuItem("\u9000\u51FA\u7CFB\u7EDF");
+		fileMenu.add(exitItem);
 		
 		editMenu = new JMenu("\u7F16\u8F91");
 		menuBar.add(editMenu);
 		
+		moveItem = new JMenuItem("\u62D6\u52A8");
+		editMenu.add(moveItem);
+		
+		copyItem = new JMenuItem("\u590D\u5236");
+		editMenu.add(copyItem);
+		
+		pasteItem = new JMenuItem("\u7C98\u8D34");
+		editMenu.add(pasteItem);
+		
+		deleteItem = new JMenuItem("\u5220\u9664");
+		editMenu.add(deleteItem);
+		
+		rotateItem = new JMenuItem("\u65CB\u8F6C");
+		editMenu.add(rotateItem);
+		
+		propertyItem = new JMenuItem("\u5C5E\u6027");
+		editMenu.add(propertyItem);
+		
+		zujianMenu = new JMenu("\u7EC4\u4EF6");
+		menuBar.add(zujianMenu);
+		
+		dianyaItem = new JMenuItem("\u7535\u538B\u8868");
+		zujianMenu.add(dianyaItem);
+		
+		dianliuItem = new JMenuItem("\u7535\u6D41\u8868");
+		zujianMenu.add(dianliuItem);
+		
+		dianzuItem = new JMenuItem("\u7535\u963B");
+		zujianMenu.add(dianzuItem);
+		
+		dianrongItem = new JMenuItem("\u7535\u5BB9");
+		zujianMenu.add(dianrongItem);
+		
+		erjiguanItem = new JMenuItem("\u4E8C\u6781\u7BA1");
+		zujianMenu.add(erjiguanItem);
+		
+		fangdaqiItem = new JMenuItem("\u8FD0\u7B97\u653E\u5927\u5668");
+		zujianMenu.add(fangdaqiItem);
+		
+		dianyayuanItem = new JMenuItem("\u7535\u538B\u6E90");
+		zujianMenu.add(dianyayuanItem);
+		
+		dianliuyuanItem = new JMenuItem("\u7535\u6D41\u6E90");
+		zujianMenu.add(dianliuyuanItem);
+		
+		jiediItem = new JMenuItem("\u63A5\u5730");
+		zujianMenu.add(jiediItem);
+		
+		kaiguanItem = new JMenuItem("\u5F00\u5173");
+		zujianMenu.add(kaiguanItem);
+		
+		dianganItem = new JMenuItem("\u7535\u611F");
+		zujianMenu.add(dianganItem);
+		
+		daoxianItem = new JMenuItem("\u5BFC\u7EBF");
+		zujianMenu.add(daoxianItem);
+		
+		fangzhenMenu = new JMenu("\u4EFF\u771F");
+		menuBar.add(fangzhenMenu);
+		
+		diaoyongItem = new JMenuItem("\u8C03\u7528PSpice\u4EFF\u771F");
+		fangzhenMenu.add(diaoyongItem);
+		
+		chakanItem = new JMenuItem("\u67E5\u770B\u5B9E\u9A8C\u7ED3\u679C");
+		fangzhenMenu.add(chakanItem);
+		
+		viewMenu = new JMenu("\u89C6\u56FE");
+		menuBar.add(viewMenu);
+		
+		dianlutumiaoshuItem = new JMenuItem("\u67E5\u770BSPICE\u7535\u8DEF\u63CF\u8FF0");
+		viewMenu.add(dianlutumiaoshuItem);
+		
+		dianlutudaimaItem = new JMenuItem("\u67E5\u770B\u7535\u8DEF\u56FE\u4EE3\u7801");
+		viewMenu.add(dianlutudaimaItem);
+		
+		daimabianjiItem = new JMenuItem("SPICE\u4EE3\u7801\u7F16\u8F91");
+		viewMenu.add(daimabianjiItem);
+		
+		shiyanMenu = new JMenu("\u5B9E\u9A8C\u62A5\u544A");
+		menuBar.add(shiyanMenu);
+		
 		reportMenuItem = new JMenuItem("\u751F\u6210\u5B9E\u9A8C\u62A5\u544A");
+		shiyanMenu.add(reportMenuItem);
 		reportMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ReportFrame reportFrame = new ReportFrame();
 			}
 		});
 		
-		JMenuItem mntmpspice = new JMenuItem("\u8C03\u7528PSpice\u4EFF\u771F");
-		editMenu.add(mntmpspice);
-		editMenu.add(reportMenuItem);
+		tijiaoresultItem = new JMenuItem("\u63D0\u4EA4\u5B9E\u9A8C\u62A5\u544A");
+		shiyanMenu.add(tijiaoresultItem);
+		
+		setMenu = new JMenu("\u8BBE\u7F6E");
+		menuBar.add(setMenu);
+		
+		serverSetitem = new JMenuItem("\u670D\u52A1\u5668\u7AEF\u8BBE\u7F6E");
+		setMenu.add(serverSetitem);
+		
+		pathSetItem = new JMenuItem("PSPICE\u8C03\u7528\u8DEF\u5F84\u8BBE\u7F6E");
+		setMenu.add(pathSetItem);
+		
+		helpMenu = new JMenu("\u5E2E\u52A9");
+		menuBar.add(helpMenu);
+		
+		aboutItem = new JMenuItem("\u5173\u4E8E");
+		helpMenu.add(aboutItem);
+		
+		softwareItem = new JMenuItem("\u8F6F\u4EF6\u5E2E\u52A9");
+		helpMenu.add(softwareItem);
+		
+		checkupdateItem = new JMenuItem("\u68C0\u67E5\u66F4\u65B0");
+		helpMenu.add(checkupdateItem);
 		
 		menuBar.setVisible(true);
 		
@@ -290,7 +431,7 @@ public class MainWindow extends JFrame {
 		if(result == JFileChooser.APPROVE_OPTION){
 			File file = fileChooser.getSelectedFile();
 			FileHelper.saveComponentListToCsv(file
-					, drawArea.getComponentList());
+					,  drawArea.getComponentList());
 		}
 	}
 	
