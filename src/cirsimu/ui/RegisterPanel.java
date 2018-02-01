@@ -1,8 +1,5 @@
 package cirsimu.ui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -13,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
