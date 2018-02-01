@@ -1,6 +1,7 @@
 package cirsimu.ui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -367,6 +368,16 @@ public class DrawArea extends JPanel {
 	
 	private void reverseLink(int[] inter) {
 		cirComponentList.reverseLink(inter[0], inter[1]);
+	}
+	
+	public void deleteComp(CirComponent comp){
+		int index = cirComponentList.indexOf(comp);
+		//DEBUG
+//		System.out.println("index of comp: " + index);
+		cirComponentList.remove(index);
+		remove(compLblList.get(index));
+		compLblList.remove(index);
+		paint(getGraphics());
 	}
 	
 	//DEBUG

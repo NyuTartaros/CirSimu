@@ -44,6 +44,18 @@ public class CirComponentList {
 		return cirComponents;
 	}
 	
+	public int indexOf(CirComponent component){
+		return cirComponents.indexOf(component);
+	}
+	
+	public void remove(int index){
+		cirComponents.remove(index);
+	}
+	
+	public void remove(CirComponent component){
+		cirComponents.remove(component);
+	}
+	
 	//判断点击发生在哪个组件和接口
 	public int[] pointInComp(int x, int y){
 		int[] result = new int[2];
