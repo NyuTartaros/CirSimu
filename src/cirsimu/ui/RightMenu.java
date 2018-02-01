@@ -25,6 +25,12 @@ public class RightMenu extends JPopupMenu{
 		this.parentComp = parentComp;
 		drawArea.isDrawArea();
 		mDrag = new JMenuItem("ÍÏ¶¯");
+		mDrag.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				drawArea.deleteComp(parentComp);
+				drawArea.startEditing(parentComp.getType());
+			}
+		});
 		mDrag.setIcon(null);
 		mCopy = new JMenuItem("¸´ÖÆ");
 		mCopy.addActionListener(new ActionListener() {

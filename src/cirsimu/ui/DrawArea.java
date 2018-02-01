@@ -31,6 +31,7 @@ public class DrawArea extends JPanel {
 	private static final int EDITING = 1;
 	private static final int LINKING_A = 2;
 	private static final int LINKING_B = 3;
+	
 	public static final int delta = 5;	//接口点击误差限
 	
 	//TODO 实现元件拖动功能
