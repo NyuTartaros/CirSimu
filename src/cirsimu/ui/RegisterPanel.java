@@ -32,6 +32,7 @@ public class RegisterPanel extends JFrame {
 	private JLabel passwdPs;
 	private JLabel passsurePs;
 	private JLabel emailPs;
+	private JTextField textField;
 	
 	public RegisterPanel(JDialog loginDialog) {
 		loginDialog.setEnabled(false);
@@ -65,17 +66,17 @@ public class RegisterPanel extends JFrame {
 		
 		passwd = new JLabel("密 码");
 		passwd.setHorizontalAlignment(SwingConstants.CENTER);
-		passwd.setBounds(67, 139, 54, 15);
+		passwd.setBounds(67, 184, 54, 15);
 		contentPane.add(passwd);
 		
 		passwddouble = new JLabel("确 认");
 		passwddouble.setHorizontalAlignment(SwingConstants.CENTER);
-		passwddouble.setBounds(67, 184, 54, 15);
+		passwddouble.setBounds(67, 229, 54, 15);
 		contentPane.add(passwddouble);
 		
 		email = new JLabel("邮 箱");
 		email.setHorizontalAlignment(SwingConstants.CENTER);
-		email.setBounds(67, 229, 54, 15);
+		email.setBounds(67, 271, 54, 15);
 		contentPane.add(email);
 		
 		idType = new JTextField();
@@ -111,20 +112,20 @@ public class RegisterPanel extends JFrame {
 		namePs.setBounds(350, 93, 184, 21);
 		contentPane.add(namePs);
 		
-		passwdPs=new JLabel("* (除去空格4-10位)");
+		passwdPs=new JLabel("* (\u81EA\u5DF1\u7684\u771F\u5B9E\u73ED\u7EA7)");
 		passwdPs.setBounds(350, 136, 184, 21);
 		contentPane.add(passwdPs);
 		
-		passsurePs=new JLabel("* (请再输入一遍)");
+		passsurePs=new JLabel("* (\u9664\u53BB\u7A7A\u683C4-10\u4F4D)");
 		passsurePs.setBounds(350, 181, 184, 21);
 		contentPane.add(passsurePs);
 
-		emailPs=new JLabel("* (请正确输入邮箱)");
+		emailPs=new JLabel("* (\u8BF7\u518D\u8F93\u5165\u4E00\u904D)");
 		emailPs.setBounds(350, 226, 184, 21);
 		contentPane.add(emailPs);
 
 		JButton button = new JButton("注册");
-		button.setBounds(191, 293, 93, 23);
+		button.setBounds(191, 310, 93, 23);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -133,5 +134,20 @@ public class RegisterPanel extends JFrame {
 			}
 		});
 		contentPane.add(button);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(149, 268, 184, 21);
+		contentPane.add(textField);
+		
+		JLabel label = new JLabel("* (\u8BF7\u6B63\u786E\u8F93\u5165\u90AE\u7BB1)");
+		label.setBounds(350, 271, 184, 21);
+		contentPane.add(label);
+		
+		JLabel label_1 = new JLabel("\u73ED \u7EA7");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 12));
+		label_1.setBounds(67, 139, 54, 15);
+		contentPane.add(label_1);
 	}
 }
