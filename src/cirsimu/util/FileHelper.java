@@ -24,13 +24,19 @@ public class FileHelper {
 			HashMap<Integer,Integer> neighCompTable = component.getNeighCompTable();
 			HashMap<Integer,Integer> neighInterTable = component.getNeighInterTable();
 			for(int j=0; j<component.getInterfaceNum(); j++){
-				writer.write(j+" "+neighCompTable.get(j)+" "+neighInterTable.get(j));
+				writer.write(j+" "+neighCompTable.get(j)+" "+neighInterTable.get(j)+" ");
 			}
 			writer.write("\n");
 			writer.flush();
 		}
 		writer.close();
 		return false;
+	}
+	
+	public static String convertToCir(CirComponentList componentList){
+		
+		
+		return null;
 	}
 
 }
