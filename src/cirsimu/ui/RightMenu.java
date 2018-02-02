@@ -12,11 +12,13 @@ public class RightMenu extends JPopupMenu{
 	private JMenuItem mDrag;
 	private JMenuItem mCopy;
 //	private JMenuItem mPaste;
-	private JMenuItem mRotate;
-	private JMenuItem mArrti;
+	private JMenuItem mDelete;
+	private JMenuItem mAttri;
 	
 	private DrawArea drawArea;
 	private CirComponent parentComp;
+	private JMenuItem mPaste;
+	private JMenuItem mRotate;
 	
 	public RightMenu(DrawArea drawArea, CirComponent parentComp) {
 		//DEBUG
@@ -41,21 +43,27 @@ public class RightMenu extends JPopupMenu{
 		mCopy.setIcon(null);
 //		mPaste = new JMenuItem("Õ³Ìù");
 //		mPaste.setIcon(null);
-		mRotate = new JMenuItem("É¾³ý");
-		mRotate.addActionListener(new ActionListener() {
+		mDelete = new JMenuItem("É¾³ý");
+		mDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				drawArea.deleteComp(parentComp);
 			}
 		});
-		mRotate.setIcon(null);
-		mArrti = new JMenuItem("ÊôÐÔ");
-		mArrti.setIcon(null);
+		mDelete.setIcon(null);
+		mAttri = new JMenuItem("ÊôÐÔ");
+		mAttri.setIcon(null);
 		
 		add(mDrag);
 		add(mCopy);
+		
+		mPaste = new JMenuItem("\u7C98\u8D34");
+		add(mPaste);
 //		add(mPaste);
+		add(mDelete);
+		
+		mRotate = new JMenuItem("\u65CB\u8F6C");
 		add(mRotate);
-		add(mArrti);
+		add(mAttri);
 	}
 	
 }
