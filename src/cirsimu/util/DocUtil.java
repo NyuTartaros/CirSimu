@@ -21,7 +21,7 @@ public class DocUtil {
         configure.setDefaultEncoding("utf-8");
     }
     /**
-     * 根据Doc模板生成word文件
+     * 调用freemaker框架，根据模板生成文件
      * @param dataMap 需要填入模板的数据
      * @param downloadType 文件名称
      * @param savePath 保存路径
