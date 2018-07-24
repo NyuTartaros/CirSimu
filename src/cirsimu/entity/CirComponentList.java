@@ -78,7 +78,61 @@ public class CirComponentList {
 	
 	//将组件邻接表重整为cir文件使用的标签表，等价的接口用同一个label表示
 	public void reformNeighTable2LabelTable(){
-		
+		//init interLabelTable
+		for(int i=0; i<cirComponents.size(); i++){
+			cirComponents.get(i).setInterLabelTable();
+		}
+		char labeliter = 'a';
+		for(int i=0; i<cirComponents.size(); i++){
+			CirComponent component = cirComponents.get(i);
+			for(int j=0; j<component.getInterfaceNum(); j++){
+				if (component.getInterLabel(j) != null) {
+					String label = component.getInterLabel(j);
+					for(int k=0; k<component.getNeighCompTable().get(j).size(); k++){
+						int comp = component.getNeighCompTable().get(j).get(k);
+						int inter = component.getNeighInterTable().get(j).get(k);
+						cirComponents.get(comp).setInterLabel(inter, label);
+					}
+				}else{
+					for(int k=0; k<component.getNeighCompTable().get(j).size(); k++){
+						int comp = component.getNeighCompTable().get(j).get(k);
+						int inter = component.getNeighInterTable().get(j).get(k);
+						if (cirComponents.get(comp).getInterLabel(inter) != null) {
+							String label = cirComponents.get(comp).getInterLabel(inter);
+							component.setInterLabel(j, label);
+							break;
+						}
+					}
+				}
+				//如果label依然为null，说明自身和邻接inter都为null，则赋一个新的label
+				if(component.getInterLabel(j) == null){
+					component.setInterLabel(j, String.valueOf(labeliter));
+					labeliter++;
+				}
+			}
+		}
+		//如果有接地，label重置为0
+		String groundlabel = null;
+		for(int i=0; i<cirComponents.size(); i++){
+			CirComponent component = cirComponents.get(i);
+			if (component.getType() != CirComponent.groundConn) {
+				continue;
+			}
+			groundlabel = component.getInterLabel(0);
+		}
+		//没有接地就直接返回
+		if (groundlabel == null) {
+			return;
+		}
+		//有接地则开始重置
+		for(int i=0; i<cirComponents.size(); i++){
+			CirComponent component = cirComponents.get(i);
+			for(int j=0; j<component.getInterfaceNum(); j++){
+				if (component.getInterLabel(j).equals(groundlabel)) {
+					component.setInterLabel(j, "0");
+				}
+			}
+		}
 	}
 
 }

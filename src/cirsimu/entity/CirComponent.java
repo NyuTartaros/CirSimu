@@ -174,6 +174,10 @@ public class CirComponent {
 		return interLabelTable.get(localInterface);
 	}
 	
+	public void setInterLabelTable(){
+		this.interLabelTable = new HashMap<Integer, String>();
+	}
+	
 	public void setInterLabelTable(HashMap<Integer, String> interLabelTable){
 		this.interLabelTable = interLabelTable;
 	}

@@ -45,17 +45,15 @@ public class FileHelper {
 	public static boolean saveComponentListToCir(File file
 			, CirComponentList componentList) throws IOException{
 		FileWriter writer = new FileWriter(file, false);
+		componentList.reformNeighTable2LabelTable();
 		ArrayList<CirComponent> components = componentList.getArrayList();
 		for(int i=0; i<components.size(); i++){
 			CirComponent component = components.get(i);
-			writer.write(component.getType()+i+"\n");
-			HashMap<Integer,ArrayList<Integer>> neighCompTable = component.getNeighCompTable();
-			HashMap<Integer,ArrayList<Integer>> neighInterTable = component.getNeighInterTable();
+			writer.write(component.getType()+i+" ");
 			for(int j=0; j<component.getInterfaceNum(); j++){
-				for(int k=0; k<neighCompTable.get(j).size(); k++){
-					writer.write(j+" "+neighCompTable.get(j).get(k)+" "+neighInterTable.get(j).get(k)+" \n");
-				}
+				writer.write(component.getInterLabel(j)+' ');
 			}
+			writer.write(String.valueOf(component.getProperty()));
 			writer.write("\n");
 			writer.flush();
 		}
