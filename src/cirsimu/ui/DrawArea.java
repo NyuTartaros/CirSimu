@@ -210,8 +210,8 @@ public class DrawArea extends JPanel {
 		g.setColor(Color.BLACK);
 		for(int i=0; i<cirComponents.size(); i++){
 			CirComponent comp = cirComponents.get(i);
-			HashMap<Integer,Integer> neighCompTable = comp.getNeighCompTable();
-			HashMap<Integer,Integer> neighInterTable = comp.getNeighInterTable();
+			HashMap<Integer,ArrayList<Integer>> neighCompTable = comp.getNeighCompTable();
+			HashMap<Integer,ArrayList<Integer>> neighInterTable = comp.getNeighInterTable();
 			//DEBUG
 //			System.out.println("componentNo." + i);
 //			System.out.println("neighCompTable:");
@@ -226,8 +226,8 @@ public class DrawArea extends JPanel {
 //			}
 			for(Integer aInter : neighCompTable.keySet()){
 				Integer aComp = i;
-				Integer bComp = neighCompTable.get(aInter);
-				Integer bInter = neighInterTable.get(aInter);
+				Integer bComp = neighCompTable.get(aInter).get(0);
+				Integer bInter = neighInterTable.get(aInter).get(0);
 				Point aPoint = comp.getInterfaceLoc(aInter);
 				Point bPoint = cirComponents.get(bComp).getInterfaceLoc(bInter);
 				boolean pointFlag = cirComponents.get(aComp).getPointFlag(aInter);

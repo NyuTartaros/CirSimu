@@ -21,10 +21,12 @@ public class FileHelper {
 			writer.write(component.getType()+"\n");
 			writer.write(component.getx()+"\n");
 			writer.write(component.gety()+"\n");
-			HashMap<Integer,Integer> neighCompTable = component.getNeighCompTable();
-			HashMap<Integer,Integer> neighInterTable = component.getNeighInterTable();
+			HashMap<Integer,ArrayList<Integer>> neighCompTable = component.getNeighCompTable();
+			HashMap<Integer,ArrayList<Integer>> neighInterTable = component.getNeighInterTable();
 			for(int j=0; j<component.getInterfaceNum(); j++){
-				writer.write(j+" "+neighCompTable.get(j)+" "+neighInterTable.get(j)+" \n");
+				for(int k=0; k<neighCompTable.get(j).size(); k++){
+					writer.write(j+" "+neighCompTable.get(j).get(k)+" "+neighInterTable.get(j).get(k)+" \n");
+				}
 			}
 			writer.write("\n");
 			writer.flush();
@@ -35,10 +37,9 @@ public class FileHelper {
 	
 	/**
 	 * 将电路图数据结构转换为Cir格式并保存
+	 * @param file 文件对象
 	 * @param componentList 电路图数据结构
-	 * @param filename 保存文件名
-	 * @param savepath 保存路径
-	 * @return Cir文件内容
+	 * @return 写入成功返回true, 不成功false
 	 * @throws IOException 
 	 */
 	public static boolean saveComponentListToCir(File file
@@ -47,14 +48,13 @@ public class FileHelper {
 		ArrayList<CirComponent> components = componentList.getArrayList();
 		for(int i=0; i<components.size(); i++){
 			CirComponent component = components.get(i);
-			writer.write("<component>\n");
-			writer.write(component.getType()+"\n");
-			writer.write(component.getx()+"\n");
-			writer.write(component.gety()+"\n");
-			HashMap<Integer,Integer> neighCompTable = component.getNeighCompTable();
-			HashMap<Integer,Integer> neighInterTable = component.getNeighInterTable();
+			writer.write(component.getType()+i+"\n");
+			HashMap<Integer,ArrayList<Integer>> neighCompTable = component.getNeighCompTable();
+			HashMap<Integer,ArrayList<Integer>> neighInterTable = component.getNeighInterTable();
 			for(int j=0; j<component.getInterfaceNum(); j++){
-				writer.write(j+" "+neighCompTable.get(j)+" "+neighInterTable.get(j)+" \n");
+				for(int k=0; k<neighCompTable.get(j).size(); k++){
+					writer.write(j+" "+neighCompTable.get(j).get(k)+" "+neighInterTable.get(j).get(k)+" \n");
+				}
 			}
 			writer.write("\n");
 			writer.flush();

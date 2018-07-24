@@ -33,8 +33,8 @@ public class CirComponentList {
 	
 	public void reverseLink(Integer comp1, Integer interface1) {
 		CirComponent cirComponent1 = cirComponents.get(comp1);
-		Integer comp2 = cirComponent1.getNeighCompTable().get(interface1);
-		Integer interface2 = cirComponent1.getNeighInterTable().get(interface1);
+		Integer comp2 = cirComponent1.getNeighCompTable().get(interface1).get(0);
+		Integer interface2 = cirComponent1.getNeighInterTable().get(interface1).get(0);
 		CirComponent cirComponent2 = cirComponents.get(comp2);
 		cirComponent1.reverseLink(interface1);
 		cirComponent2.reverseLink(interface2);
@@ -74,6 +74,11 @@ public class CirComponentList {
 			}
 		}
 		return null;
+	}
+	
+	//将组件邻接表重整为cir文件使用的标签表，等价的接口用同一个label表示
+	public void reformNeighTable2LabelTable(){
+		
 	}
 
 }

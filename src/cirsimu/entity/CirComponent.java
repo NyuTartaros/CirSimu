@@ -1,5 +1,6 @@
 package cirsimu.entity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import cirsimu.ui.DrawArea;
@@ -14,12 +15,15 @@ public class CirComponent {
 	private Point[] interfaceLocs;
 	private int interfaceNum;
 	private int rotateCount = 0;
-	private HashMap<Integer,Integer> neighCompTable
-			= new HashMap<Integer, Integer>();	//邻接组件表
-	private HashMap<Integer,Integer> neighInterTable
-			= new HashMap<Integer, Integer>();	//邻接接口表
+	private HashMap<Integer, ArrayList<Integer>> neighCompTable
+			= new HashMap<Integer, ArrayList<Integer>>();	//邻接组件表
+	private HashMap<Integer, ArrayList<Integer>> neighInterTable
+			= new HashMap<Integer, ArrayList<Integer>>();	//邻接接口表
 	private HashMap<Integer, Boolean> pointFlagTable
 			= new HashMap<Integer, Boolean>();
+	private HashMap<Integer, String> interLabelTable
+			= new HashMap<Integer, String>();	//标志接口在cir文件中的标号
+	private Double property = -1.0;
 	
 	//元件尺寸
 	private static final Point defaultSize = new Point(120, 30);
@@ -127,19 +131,19 @@ public class CirComponent {
 		return interfaceNum;
 	}
 	
-	public void setNeighCompTable(HashMap<Integer,Integer> neighCompTable){
+	public void setNeighCompTable(HashMap<Integer,ArrayList<Integer>> neighCompTable){
 		this.neighCompTable = neighCompTable;
 	}
 	
-	public HashMap<Integer,Integer> getNeighCompTable(){
+	public HashMap<Integer,ArrayList<Integer>> getNeighCompTable(){
 		return neighCompTable;
 	}
 	
-	public void setNeighInterTable(HashMap<Integer,Integer> neighInterTable){
+	public void setNeighInterTable(HashMap<Integer,ArrayList<Integer>> neighInterTable){
 		this.neighInterTable = neighInterTable;
 	}
 	
-	public HashMap<Integer,Integer> getNeighInterTable(){
+	public HashMap<Integer,ArrayList<Integer>> getNeighInterTable(){
 		return neighInterTable;
 	}
 	
@@ -162,9 +166,39 @@ public class CirComponent {
 		return pointFlagTable.get(inter);
 	}
 	
+	public void setInterLabel(Integer localInterface, String label){
+		interLabelTable.put(localInterface, label);
+	}
+	
+	public String getInterLabel(Integer localInterface){
+		return interLabelTable.get(localInterface);
+	}
+	
+	public void setInterLabelTable(HashMap<Integer, String> interLabelTable){
+		this.interLabelTable = interLabelTable;
+	}
+	
+	public HashMap<Integer, String> getInterLabelTable(){
+		return interLabelTable;
+	}
+	
+	public void setProperty(Double property){
+		this.property = property;
+	}
+	
+	public Double getProperty(){
+		return property;
+	}
+	
 	public void setlink(int localInterface, int remoteComp, int remoteInterface){
-		neighCompTable.put(localInterface, remoteComp);
-		neighInterTable.put(localInterface, remoteInterface);
+		if (neighCompTable.get(localInterface) == null) {
+			neighCompTable.put(localInterface, new ArrayList<Integer>());
+		}
+		neighCompTable.get(localInterface).add(remoteComp);
+		if (neighInterTable.get(localInterface) == null) {
+			neighInterTable.put(localInterface, new ArrayList<Integer>());
+		}
+		neighInterTable.get(localInterface).add(remoteInterface);
 		pointFlagTable.put(localInterface, false);
 	}
 	
