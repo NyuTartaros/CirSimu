@@ -121,7 +121,7 @@ public class MainWindow extends JFrame {
 		saveMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					saveComponentListToCsv();
+					saveComponentListToCir();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -435,14 +435,14 @@ public class MainWindow extends JFrame {
 		}
 	}
 	
-	public void saveComponentListToCsv() throws IOException{
+	public void saveComponentListToCir() throws IOException{
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("±£¥ÊCir");
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		int result = fileChooser.showSaveDialog(getContentPane());
 		if(result == JFileChooser.APPROVE_OPTION){
 			File file = fileChooser.getSelectedFile();
-			FileHelper.saveComponentListToCsv(file
+			FileHelper.saveComponentListToCir(file
 					, drawArea.getComponentList());
 		}
 	}
