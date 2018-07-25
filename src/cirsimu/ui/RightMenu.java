@@ -51,6 +51,12 @@ public class RightMenu extends JPopupMenu{
 		});
 		mDelete.setIcon(null);
 		mAttri = new JMenuItem(" Ù–‘");
+		mAttri.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AttributeLog attributeLog = new AttributeLog(parentComp);
+				attributeLog.setVisible(true);
+			}
+		});
 		mAttri.setIcon(null);
 		
 		add(mDrag);
