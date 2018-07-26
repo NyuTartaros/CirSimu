@@ -1,6 +1,7 @@
 package cirsimu.util;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,6 +59,33 @@ public class FileHelper {
 			writer.flush();
 		}
 		writer.close();
+		return true;
+	}
+	
+	public static String readPspicePath() {
+		try {
+			FileReader reader = new FileReader(new File("pspice.dat"));
+			char[] buffer = new char[100];
+			reader.read(buffer);
+			return new String(buffer);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static boolean savePspicePath(String pspicePath) {
+		try {
+			FileWriter writer = new FileWriter(new File("pspice.dat"), false);
+			writer.write(pspicePath);
+			writer.flush();
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 		return true;
 	}
 

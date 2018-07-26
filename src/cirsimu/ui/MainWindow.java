@@ -3,6 +3,7 @@ package cirsimu.ui;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -209,6 +210,17 @@ public class MainWindow extends JFrame {
 		menuBar.add(fangzhenMenu);
 		
 		diaoyongItem = new JMenuItem("\u8C03\u7528PSpice\u4EFF\u771F");
+		diaoyongItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String pspicePath = FileHelper.readPspicePath();
+				try {
+					Runtime.getRuntime().exec("\"" + pspicePath + "\"");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		fangzhenMenu.add(diaoyongItem);
 		
 		chakanItem = new JMenuItem("\u67E5\u770B\u5B9E\u9A8C\u7ED3\u679C");
@@ -247,6 +259,12 @@ public class MainWindow extends JFrame {
 		setMenu.add(serverSetitem);
 		
 		pathSetItem = new JMenuItem("PSPICE\u8C03\u7528\u8DEF\u5F84\u8BBE\u7F6E");
+		pathSetItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String pspicePath = JOptionPane.showInputDialog(getContentPane(), "请输入Pspice的绝对路径：", "设置Pspice路径", JOptionPane.INFORMATION_MESSAGE);
+				FileHelper.savePspicePath(pspicePath);
+			}
+		});
 		setMenu.add(pathSetItem);
 		
 		helpMenu = new JMenu("\u5E2E\u52A9");
