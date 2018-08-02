@@ -54,7 +54,7 @@ public class FileHelper {
 			for(int j=0; j<component.getInterfaceNum(); j++){
 				writer.write(component.getInterLabel(j)+' ');
 			}
-			writer.write(String.valueOf(component.getProperty()));
+			writer.write(component.getAttributeList());
 			writer.write("\n");
 			writer.flush();
 		}

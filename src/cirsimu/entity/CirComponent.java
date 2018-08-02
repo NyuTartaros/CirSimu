@@ -23,6 +23,8 @@ public class CirComponent {
 			= new HashMap<Integer, Boolean>();
 	private HashMap<Integer, String> interLabelTable
 			= new HashMap<Integer, String>();	//标志接口在cir文件中的标号
+	private int attributeNum;
+	private ArrayList<Float> attributeList;
 	private Double property = -1.0;
 	
 	//元件尺寸
@@ -68,6 +70,19 @@ public class CirComponent {
 	public static final String inductance = "inductance";
 	public static final String switchComp = "switch";
 	public static final String voltageSource = "voltageSource";
+	
+	//元件属性数量
+	public static final int voltmeterAttriNum = 1;
+	public static final int amperrmeterAttriNum = 1;
+	public static final int resistenceAttriNum = 1;
+	public static final int capicititanceAttriNum = 1;
+	public static final int diodeAttriNum = 1;
+	public static final int amplifierAttriNum = 2;
+	public static final int currentSourceAttriNum = 2;
+	public static final int groundConnAttriNum = 0;
+	public static final int inductanceAttriNum = 1;
+	public static final int switchCompAttriNum = 0;
+	public static final int voltageSourceAttriNum = 2;
 	
 	
 	public CirComponent(String type, int x, int y){
@@ -184,6 +199,51 @@ public class CirComponent {
 	
 	public HashMap<Integer, String> getInterLabelTable(){
 		return interLabelTable;
+	}
+	
+	public int getAttributeNum() {
+		switch(this.type){
+		case voltmeter:
+			return voltmeterAttriNum;
+		case amperemeter:
+			return amperrmeterAttriNum;
+		case resistance:
+			return resistenceAttriNum;
+		case capicititance:
+			return capicititanceAttriNum;
+		case diode:
+			return diodeAttriNum;
+		case amplifier:
+			return amplifierAttriNum;
+		case currentSource:
+			return currentSourceAttriNum;
+		case groundConn:
+			return groundConnAttriNum;
+		case inductance:
+			return inductanceAttriNum;
+		case switchComp:
+			return switchCompAttriNum;
+		case voltageSource:
+			return voltageSourceAttriNum;
+		default:
+			return 0;
+		}
+	}
+	
+	public void setAttributeList(ArrayList<Float> attributeList){
+		this.attributeList = attributeList;
+	}
+	
+	public String getAttributeList(){
+		String list = "";
+		if(attributeList == null){
+			return "";
+		}
+		for(int i=0; i<attributeList.size()-1; i++){
+			list += attributeList.get(i) + ",";
+		}
+		list += attributeList.get(attributeList.size()-1);
+		return list;
 	}
 	
 	public void setProperty(Double property){

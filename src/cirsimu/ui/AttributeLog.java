@@ -13,18 +13,19 @@ import cirsimu.entity.CirComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
 public class AttributeLog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField attriField;
-
+	private ArrayList<JTextField> attriFieldList;
 	/**
 	 * Create the dialog.
 	 */
 	public AttributeLog(CirComponent parentCirComponent) {
+		int attributeNum = parentCirComponent.getAttributeNum();
 		setIconImage(Toolkit.getDefaultToolkit().getImage(".\\icons\\icon.png"));
 		setTitle("\u5143\u4EF6\u5C5E\u6027");
 		setBounds(100, 100, 255, 181);
@@ -34,14 +35,31 @@ public class AttributeLog extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel attriLabel = new JLabel("\u5143\u4EF6\u5C5E\u6027\uFF1A");
-			attriLabel.setBounds(43, 23, 60, 15);
+			attriLabel.setBounds(28, 23, 60, 15);
 			contentPanel.add(attriLabel);
 		}
 		
-		attriField = new JTextField();
-		attriField.setBounds(50, 58, 114, 21);
-		contentPanel.add(attriField);
-		attriField.setColumns(10);
+		attriFieldList = new ArrayList<JTextField>();
+		int leftBound = 38;
+		int sumWidth = 172;
+		int upperBound = 57;
+		int height = 21;
+		int fieldGap = 10;
+		int gapNum = attributeNum-1;
+		int fieldWidth = Math.round((sumWidth-gapNum*fieldGap)/(float)attributeNum);
+		System.out.println("attributeNum: "+attributeNum);
+		System.out.println("fieldWidth: "+fieldWidth);
+		int xtmp = leftBound;
+		for(int i=0; i<attributeNum; i++){
+			System.out.println("xtmp: "+xtmp);
+			JTextField attriFiled = new JTextField();
+			attriFiled.setBounds(xtmp, upperBound, fieldWidth, height);
+			contentPanel.add(attriFiled);
+			attriFiled.setColumns(10);
+			attriFieldList.add(attriFiled);
+			xtmp += fieldWidth + fieldGap;
+		}
+		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -50,13 +68,17 @@ public class AttributeLog extends JDialog {
 				JButton okButton = new JButton("\u786E\u8BA4");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						String attribute = attriField.getText();
-						if (attribute.equals("")) {
-							return;
-						}else{
-							parentCirComponent.setProperty(new Double(attribute));
-							dispose();
+						ArrayList<Float> attriList = new ArrayList<Float>();
+						for(int i=0; i<attributeNum; i++){
+							String attribute = attriFieldList.get(i).getText();
+							if(attribute.equals("")){
+								attriList.add((float) -1.0);
+							}else{
+								attriList.add(new Float(attribute));
+							}
 						}
+						parentCirComponent.setAttributeList(attriList);
+						dispose();
 					}
 				});
 				okButton.setActionCommand("OK");

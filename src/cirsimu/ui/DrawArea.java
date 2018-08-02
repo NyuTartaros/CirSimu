@@ -352,7 +352,11 @@ public class DrawArea extends JPanel {
 	}
 	
 	public void newGraph() {
-		cirComponentList = new CirComponentList();
+		for(int i=cirComponentList.size()-1; i>=0; i--){
+			cirComponentList.remove(i);
+			remove(compLblList.get(i));
+			compLblList.remove(i);
+		}
 		paint(getGraphics());
 	}
 	

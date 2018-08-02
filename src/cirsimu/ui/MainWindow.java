@@ -107,15 +107,18 @@ public class MainWindow extends JFrame {
 		menuBar.add(fileMenu);
 		
 		menuItem = new JMenuItem("\u65B0\u5EFA\u5B9E\u9A8C");
-		menuItem.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				drawArea.newGraph();
+		menuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				drawArea.newGraph();
 			}
 		});
 		fileMenu.add(menuItem);
 		
 		openMenuItem = new JMenuItem("\u6253\u5F00\u5B9E\u9A8C");
+		openMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		fileMenu.add(openMenuItem);
 		
 		saveMenuItem = new JMenuItem("\u5BFC\u51FACir");
@@ -233,9 +236,31 @@ public class MainWindow extends JFrame {
 		viewMenu.add(dianlutumiaoshuItem);
 		
 		dianlutudaimaItem = new JMenuItem("\u67E5\u770B\u7535\u8DEF\u56FE\u4EE3\u7801");
+		dianlutudaimaItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					FileHelper.saveComponentListToCsv(new File("./tmp.ex"), drawArea.getComponentList());
+					Runtime.getRuntime().exec("./Notepad++/notepad++.exe ./tmp.ex");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		viewMenu.add(dianlutudaimaItem);
 		
 		daimabianjiItem = new JMenuItem("SPICE\u4EE3\u7801\u7F16\u8F91");
+		daimabianjiItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					FileHelper.saveComponentListToCir(new File("./tmp.cir"), drawArea.getComponentList());
+					Runtime.getRuntime().exec("./Notepad++/notepad++.exe ./tmp.cir");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		viewMenu.add(daimabianjiItem);
 		
 		shiyanMenu = new JMenu("\u5B9E\u9A8C\u62A5\u544A");
