@@ -74,15 +74,15 @@ public class CirComponent {
 	//元件属性数量
 	public static final int voltmeterAttriNum = 1;
 	public static final int amperrmeterAttriNum = 1;
-	public static final int resistenceAttriNum = 1;
-	public static final int capicititanceAttriNum = 1;
+	public static final int resistenceAttriNum = 2;
+	public static final int capicititanceAttriNum = 2;
 	public static final int diodeAttriNum = 1;
-	public static final int amplifierAttriNum = 2;
-	public static final int currentSourceAttriNum = 2;
-	public static final int groundConnAttriNum = 0;
+	public static final int amplifierAttriNum = 1;
+	public static final int currentSourceAttriNum = 3;
+	public static final int groundConnAttriNum = 1;
 	public static final int inductanceAttriNum = 1;
-	public static final int switchCompAttriNum = 0;
-	public static final int voltageSourceAttriNum = 2;
+	public static final int switchCompAttriNum = 1;
+	public static final int voltageSourceAttriNum = 3;
 	
 	
 	public CirComponent(String type, int x, int y){
