@@ -286,8 +286,16 @@ public class MainWindow extends JFrame {
 		pathSetItem = new JMenuItem("PSPICE\u8C03\u7528\u8DEF\u5F84\u8BBE\u7F6E");
 		pathSetItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String pspicePath = JOptionPane.showInputDialog(getContentPane(), "请输入Pspice的绝对路径：", "设置Pspice路径", JOptionPane.INFORMATION_MESSAGE);
-				FileHelper.savePspicePath(pspicePath);
+//				String pspicePath = JOptionPane.showInputDialog(getContentPane(), "请输入Pspice的绝对路径：", "设置Pspice路径", JOptionPane.INFORMATION_MESSAGE);
+//				FileHelper.savePspicePath(pspicePath);
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("选择PSpice启动程序");
+				fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				int result = fileChooser.showSaveDialog(getContentPane());
+				if(result == JFileChooser.APPROVE_OPTION){
+					File file = fileChooser.getSelectedFile();
+					FileHelper.savePspicePath(file.getAbsolutePath());
+				}
 			}
 		});
 		setMenu.add(pathSetItem);
