@@ -45,16 +45,21 @@ public class FileHelper {
 	 */
 	public static boolean saveComponentListToCir(File file
 			, CirComponentList componentList) throws IOException{
+		System.out.println("saving cir.");
 		FileWriter writer = new FileWriter(file, false);
 		componentList.reformNeighTable2LabelTable();
 		ArrayList<CirComponent> components = componentList.getArrayList();
 		for(int i=0; i<components.size(); i++){
+			System.out.println("saving cir: in loop "+i+".");
 			CirComponent component = components.get(i);
-			writer.write(component.getType()+i+" ");
+			writer.write(component.getCompName()+" ");
+			System.out.println(component.getCompName()+" ");
 			for(int j=0; j<component.getInterfaceNum(); j++){
 				writer.write(component.getInterLabel(j)+' ');
+				System.out.println(component.getInterLabel(j)+" ");
 			}
 			writer.write(component.getAttributeList());
+			System.out.println(component.getAttributeList()+" ");
 			writer.write("\n");
 			writer.flush();
 		}

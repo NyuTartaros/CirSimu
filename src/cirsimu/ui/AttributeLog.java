@@ -20,7 +20,13 @@ import java.awt.Toolkit;
 public class AttributeLog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private ArrayList<JLabel> attriLabelList;
+	private JLabel attriLabel1;
+	private JLabel attriLabel2;
 	private ArrayList<JTextField> attriFieldList;
+	private JTextField nameField;
+	private JTextField attriField1;
+	private JTextField attriField2;
 	/**
 	 * Create the dialog.
 	 */
@@ -28,36 +34,58 @@ public class AttributeLog extends JDialog {
 		int attributeNum = parentCirComponent.getAttributeNum();
 		setIconImage(Toolkit.getDefaultToolkit().getImage(".\\icons\\icon.png"));
 		setTitle("\u5143\u4EF6\u5C5E\u6027");
-		setBounds(100, 100, 255, 181);
+		setBounds(100, 100, 255, 277);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel attriLabel = new JLabel("\u5143\u4EF6\u5C5E\u6027\uFF1A");
-			attriLabel.setBounds(28, 23, 60, 15);
-			contentPanel.add(attriLabel);
+			JLabel nameLabel = new JLabel("\u5143\u4EF6\u540D\u79F0\uFF1A");
+			nameLabel.setBounds(28, 23, 60, 15);
+			contentPanel.add(nameLabel);
 		}
 		
+		nameField = new JTextField();
+		nameField.setBounds(38, 48, 142, 21);
+		contentPanel.add(nameField);
+		nameField.setColumns(10);
+		
+		attriLabel1 = new JLabel("\u5143\u4EF6\u5C5E\u60271\uFF1A");
+		attriLabel1.setBounds(28, 81, 110, 15);
+		contentPanel.add(attriLabel1);
+		
+		attriField1 = new JTextField();
+		attriField1.setBounds(38, 106, 142, 21);
+		contentPanel.add(attriField1);
+		attriField1.setColumns(10);
+		
+		attriLabel2 = new JLabel("\u5143\u4EF6\u5C5E\u60272\uFF1A");
+		attriLabel2.setBounds(28, 137, 135, 15);
+		contentPanel.add(attriLabel2);
+		
+		attriField2 = new JTextField();
+		attriField2.setBounds(38, 162, 142, 21);
+		contentPanel.add(attriField2);
+		attriField2.setColumns(10);
+		
+		attriLabelList = new ArrayList<JLabel>();
+		attriLabelList.add(attriLabel1);
+		attriLabelList.add(attriLabel2);
 		attriFieldList = new ArrayList<JTextField>();
-		int leftBound = 38;
-		int sumWidth = 172;
-		int upperBound = 57;
-		int height = 21;
-		int fieldGap = 10;
-		int gapNum = attributeNum-1;
-		int fieldWidth = Math.round((sumWidth-gapNum*fieldGap)/(float)attributeNum);
-		System.out.println("attributeNum: "+attributeNum);
-		System.out.println("fieldWidth: "+fieldWidth);
-		int xtmp = leftBound;
-		for(int i=0; i<attributeNum; i++){
-			System.out.println("xtmp: "+xtmp);
-			JTextField attriFiled = new JTextField();
-			attriFiled.setBounds(xtmp, upperBound, fieldWidth, height);
-			contentPanel.add(attriFiled);
-			attriFiled.setColumns(10);
-			attriFieldList.add(attriFiled);
-			xtmp += fieldWidth + fieldGap;
+		attriFieldList.add(attriField1);
+		attriFieldList.add(attriField2);
+		for(int i=attributeNum; i<attriLabelList.size(); i++){
+			attriLabelList.get(i).setVisible(false);
+			attriFieldList.get(i).setVisible(false);
+		}
+		
+		if(parentCirComponent.getCompName() != null){
+			nameField.setText(parentCirComponent.getCompName());
+		}
+		if(parentCirComponent.getAttriArraylist() != null){
+			for(int i=0; i<parentCirComponent.getAttriArraylist().size(); i++){
+				attriFieldList.get(i).setText(""+parentCirComponent.getAttriArraylist().get(i));
+			}
 		}
 		
 		{
@@ -68,13 +96,15 @@ public class AttributeLog extends JDialog {
 				JButton okButton = new JButton("\u786E\u8BA4");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						ArrayList<Float> attriList = new ArrayList<Float>();
+						String compName = nameField.getText();
+						parentCirComponent.setCompName(compName);
+						ArrayList<String> attriList = new ArrayList<String>();
 						for(int i=0; i<attributeNum; i++){
 							String attribute = attriFieldList.get(i).getText();
 							if(attribute.equals("")){
-								attriList.add((float) -1.0);
+								attriList.add("-1.0 ");
 							}else{
-								attriList.add(new Float(attribute));
+								attriList.add(attribute);
 							}
 						}
 						parentCirComponent.setAttributeList(attriList);

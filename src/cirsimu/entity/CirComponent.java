@@ -15,6 +15,7 @@ public class CirComponent {
 	private Point[] interfaceLocs;
 	private int interfaceNum;
 	private int rotateCount = 0;
+	private String compName;
 	private HashMap<Integer, ArrayList<Integer>> neighCompTable
 			= new HashMap<Integer, ArrayList<Integer>>();	//邻接组件表
 	private HashMap<Integer, ArrayList<Integer>> neighInterTable
@@ -24,7 +25,7 @@ public class CirComponent {
 	private HashMap<Integer, String> interLabelTable
 			= new HashMap<Integer, String>();	//标志接口在cir文件中的标号
 	private int attributeNum;
-	private ArrayList<Float> attributeList;
+	private ArrayList<String> attributeList;
 	private Double property = -1.0;
 	
 	//元件尺寸
@@ -72,17 +73,17 @@ public class CirComponent {
 	public static final String voltageSource = "voltageSource";
 	
 	//元件属性数量
-	public static final int voltmeterAttriNum = 1;
-	public static final int amperrmeterAttriNum = 1;
-	public static final int resistenceAttriNum = 2;
-	public static final int capicititanceAttriNum = 2;
-	public static final int diodeAttriNum = 1;
-	public static final int amplifierAttriNum = 1;
-	public static final int currentSourceAttriNum = 3;
-	public static final int groundConnAttriNum = 1;
-	public static final int inductanceAttriNum = 1;
-	public static final int switchCompAttriNum = 1;
-	public static final int voltageSourceAttriNum = 3;
+	public static final int voltmeterAttriNum = 0;
+	public static final int amperrmeterAttriNum = 0;
+	public static final int resistenceAttriNum = 1;
+	public static final int capicititanceAttriNum = 1;
+	public static final int diodeAttriNum = 0;
+	public static final int amplifierAttriNum = 0;
+	public static final int currentSourceAttriNum = 2;
+	public static final int groundConnAttriNum = 0;
+	public static final int inductanceAttriNum = 0;
+	public static final int switchCompAttriNum = 0;
+	public static final int voltageSourceAttriNum = 2;
 	
 	
 	public CirComponent(String type, int x, int y){
@@ -230,20 +231,24 @@ public class CirComponent {
 		}
 	}
 	
-	public void setAttributeList(ArrayList<Float> attributeList){
+	public void setAttributeList(ArrayList<String> attributeList){
 		this.attributeList = attributeList;
 	}
 	
 	public String getAttributeList(){
 		String list = "";
-		if(attributeList == null){
+		if(attributeList == null || attributeList.size()==0){
 			return "";
 		}
 		for(int i=0; i<attributeList.size()-1; i++){
-			list += attributeList.get(i) + ",";
+			list += attributeList.get(i) + " ";
 		}
 		list += attributeList.get(attributeList.size()-1);
 		return list;
+	}
+	
+	public ArrayList<String> getAttriArraylist(){
+		return this.attributeList;
 	}
 	
 	public void setProperty(Double property){
@@ -252,6 +257,14 @@ public class CirComponent {
 	
 	public Double getProperty(){
 		return property;
+	}
+	
+	public void setCompName(String compName){
+		this.compName = compName;
+	}
+	
+	public String getCompName(){
+		return this.compName;
 	}
 	
 	public void setlink(int localInterface, int remoteComp, int remoteInterface){
