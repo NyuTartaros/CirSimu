@@ -285,7 +285,7 @@ public class CirComponent {
 		case CirComponent.voltmeter:
 			return "电压表名称";
 		case CirComponent.amperemeter:
-			return "电路表名称";
+			return "电流表名称";
 		case CirComponent.resistance:
 			return "电阻名称";
 		case CirComponent.capicititance:
