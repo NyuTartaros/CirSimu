@@ -92,11 +92,11 @@ public class CirComponent {
 	public static final String[] capicititanceAttriName = {"电容容量"};
 	public static final String[] diodeAttriName = {};
 	public static final String[] amplifierAttriName = {};
-	public static final String[] currentSourceAttriName = {"电流类型", "电流大小"};
+	public static final String[] currentSourceAttriName = {"电流源类型", "电流源大小"};
 	public static final String[] groundConnAttriName = {};
 	public static final String[] inductanceAttriName = {};
 	public static final String[] switchCompAttriName = {};
-	public static final String[] voltageSourceAttriName = {"电压类型", "电压大小"};
+	public static final String[] voltageSourceAttriName = {"电压源类型", "电压源大小"};
 	
 	
 	public CirComponent(String type, int x, int y){
@@ -278,6 +278,35 @@ public class CirComponent {
 	
 	public String getCompName(){
 		return this.compName;
+	}
+	
+	public String getAttriLogNameLabelText(){
+		switch(this.type){
+		case CirComponent.voltmeter:
+			return "电压表名称";
+		case CirComponent.amperemeter:
+			return "电路表名称";
+		case CirComponent.resistance:
+			return "电阻名称";
+		case CirComponent.capicititance:
+			return "电容名称";
+		case CirComponent.diode:
+			return "二极管名称";
+		case CirComponent.amplifier:
+			return "放大器名称";
+		case CirComponent.currentSource:
+			return "电流源名称";
+		case CirComponent.groundConn:
+			return "接地名称";
+		case CirComponent.inductance:
+			return "电感名称";
+		case CirComponent.switchComp:
+			return "开关名称";
+		case CirComponent.voltageSource:
+			return "电压源名称";
+		default:
+			return null;
+		}
 	}
 	
 	public String[] getAttriName(){

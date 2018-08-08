@@ -53,6 +53,9 @@ public class RightMenu extends JPopupMenu{
 		mAttri = new JMenuItem(" Ù–‘");
 		mAttri.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (parentComp.getType().equals(CirComponent.groundConn)) {
+					return;
+				}
 				AttributeLog attributeLog = new AttributeLog(parentComp);
 				attributeLog.setVisible(true);
 			}

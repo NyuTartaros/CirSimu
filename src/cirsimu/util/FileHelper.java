@@ -52,6 +52,9 @@ public class FileHelper {
 		for(int i=0; i<components.size(); i++){
 			System.out.println("saving cir: in loop "+i+".");
 			CirComponent component = components.get(i);
+			if (component.getType().equals(CirComponent.groundConn)) {
+				continue;
+			}
 			writer.write(component.getCompName()+" ");
 			System.out.println(component.getCompName()+" ");
 			for(int j=0; j<component.getInterfaceNum(); j++){

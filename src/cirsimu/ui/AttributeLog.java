@@ -24,6 +24,7 @@ public class AttributeLog extends JDialog {
 	private JLabel attriLabel1;
 	private JLabel attriLabel2;
 	private ArrayList<JTextField> attriFieldList;
+	private JLabel nameLabel;
 	private JTextField nameField;
 	private JTextField attriField1;
 	private JTextField attriField2;
@@ -43,9 +44,10 @@ public class AttributeLog extends JDialog {
 		if(parentCirComponent.getType() == CirComponent.groundConn){
 			return;
 		}
-		JLabel nameLabel = new JLabel("\u5143\u4EF6\u540D\u79F0\uFF1A");
+		nameLabel = new JLabel("\u5143\u4EF6\u540D\u79F0\uFF1A");
 		nameLabel.setBounds(28, 23, 60, 15);
 		contentPanel.add(nameLabel);
+		nameLabel.setText(parentCirComponent.getAttriLogNameLabelText());
 		
 		nameField = new JTextField();
 		nameField.setBounds(38, 48, 142, 21);
