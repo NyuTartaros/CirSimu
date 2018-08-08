@@ -39,11 +39,13 @@ public class AttributeLog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		{
-			JLabel nameLabel = new JLabel("\u5143\u4EF6\u540D\u79F0\uFF1A");
-			nameLabel.setBounds(28, 23, 60, 15);
-			contentPanel.add(nameLabel);
+		
+		if(parentCirComponent.getType() == CirComponent.groundConn){
+			return;
 		}
+		JLabel nameLabel = new JLabel("\u5143\u4EF6\u540D\u79F0\uFF1A");
+		nameLabel.setBounds(28, 23, 60, 15);
+		contentPanel.add(nameLabel);
 		
 		nameField = new JTextField();
 		nameField.setBounds(38, 48, 142, 21);
@@ -74,6 +76,12 @@ public class AttributeLog extends JDialog {
 		attriFieldList = new ArrayList<JTextField>();
 		attriFieldList.add(attriField1);
 		attriFieldList.add(attriField2);
+		
+		String[] attriNameList = parentCirComponent.getAttriName();
+		for(int i=0; i<attriNameList.length; i++){
+			attriLabelList.get(i).setText(attriNameList[i]);
+		}
+		
 		for(int i=attributeNum; i<attriLabelList.size(); i++){
 			attriLabelList.get(i).setVisible(false);
 			attriFieldList.get(i).setVisible(false);

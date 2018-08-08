@@ -85,6 +85,19 @@ public class CirComponent {
 	public static final int switchCompAttriNum = 0;
 	public static final int voltageSourceAttriNum = 2;
 	
+	//元件属性名
+	public static final String[] voltmeterAttriName = {};
+	public static final String[] amperrmeterAttriName = {};
+	public static final String[] resistenceAttriName = {"电阻值"};
+	public static final String[] capicititanceAttriName = {"电容容量"};
+	public static final String[] diodeAttriName = {};
+	public static final String[] amplifierAttriName = {};
+	public static final String[] currentSourceAttriName = {"电流类型", "电流大小"};
+	public static final String[] groundConnAttriName = {};
+	public static final String[] inductanceAttriName = {};
+	public static final String[] switchCompAttriName = {};
+	public static final String[] voltageSourceAttriName = {"电压类型", "电压大小"};
+	
 	
 	public CirComponent(String type, int x, int y){
 		//DEBUG
@@ -265,6 +278,35 @@ public class CirComponent {
 	
 	public String getCompName(){
 		return this.compName;
+	}
+	
+	public String[] getAttriName(){
+		switch(this.type){
+		case CirComponent.voltmeter:
+			return CirComponent.voltmeterAttriName;
+		case CirComponent.amperemeter:
+			return CirComponent.amperrmeterAttriName;
+		case CirComponent.resistance:
+			return CirComponent.resistenceAttriName;
+		case CirComponent.capicititance:
+			return CirComponent.capicititanceAttriName;
+		case CirComponent.diode:
+			return CirComponent.diodeAttriName;
+		case CirComponent.amplifier:
+			return CirComponent.amperrmeterAttriName;
+		case CirComponent.currentSource:
+			return CirComponent.currentSourceAttriName;
+		case CirComponent.groundConn:
+			return CirComponent.groundConnAttriName;
+		case CirComponent.inductance:
+			return CirComponent.inductanceAttriName;
+		case CirComponent.switchComp:
+			return CirComponent.switchCompAttriName;
+		case CirComponent.voltageSource:
+			return CirComponent.voltageSourceAttriName;
+		default:
+			return null;
+		}
 	}
 	
 	public void setlink(int localInterface, int remoteComp, int remoteInterface){
